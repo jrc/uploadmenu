@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Menu Uploader</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 20px;
+        }
+
+        #place-input {
+            width: 100%;
+        }
+
+        #cuisine {
+            width: 100%;
+        }
+
+        #languages {
+            vertical-align: top;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Menu Uploader</h1>
+    <form id="upload-form" enctype="multipart/form-data">
+        <p>
+            <label for="name">Restaurant:</label>
+            <input type="text" id="place-input" placeholder="Type a name" required>
+        </p>
+
+        <p>
+            <label for="cuisine">Cuisine:</label>
+            <select id="cuisine" onchange="updateLanguageSelectElement()" required>
+                <option></option>
+            </select>
+            </select>
+        </p>
+
+        <p>
+            <label for="languages">Menu Language(s):</label>
+            <select id="languages" name="languages" multiple required>
+            </select>
+        </p>
+
+        <p>
+            <label for="photo">Photo:</label>
+            <input type="file" id="photo" name="photo" accept="image/*" capture="camera" required>
+        </p>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>
