@@ -1,4 +1,3 @@
-// let currentCountryCode = null;
 let autocomplete = null;
 
 
@@ -57,23 +56,6 @@ function initializePlaceAutocompleteInputElement() {
 
                 // Change the search area on an existing Autocomplete object
                 autocomplete.setBounds(circle.getBounds());
-
-                // // Also use latitude/longitude to get the country code
-                // var geocoder = new google.maps.Geocoder();
-                // var latlng = new google.maps.LatLng(latitude, longitude);
-
-                // geocoder.geocode({ "location": latlng }, function (results, status) {
-                //     if (status === google.maps.GeocoderStatus.OK) {
-                //         if (results[0]) {
-                //             currentCountryCode = results[0].address_components.find(function (component) {
-                //                 return component.types.includes("country");
-                //             }).short_name;
-
-                //             console.log('Country Code (from geolocation):', currentCountryCode);
-                //             updateLanguageSelectElement();
-                //         }
-                //     }
-                // });
             }, function (error) {
                 console.error(error.message);
             });
@@ -136,15 +118,6 @@ function updateLanguageSelectElement() {
             }
         }
     }
-
-    // Finally add the language(s) of user's current country (from Geolocation)
-    // if (currentCountryCode) {
-    //     for (const c of countryToLanguagesData[currentCountryCode]) {
-    //         if (!languageCodes.includes(c)) {
-    //             languageCodes.push(c);
-    //         }
-    //     }
-    // }
 
     // Clear the current list of languages
     languagesSelectElement.innerHTML = '';
