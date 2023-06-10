@@ -30,7 +30,14 @@
             <div class="mb-3">
                 <label for="photo" class="form-label">Menu Photo (one page a time) *</label>
                 <input type="file" class="form-control form-control-lg" id="photo" name="photo" accept="image/*"
-                    capture="camera" required>
+                    capture="environment" required>
+                <!-- https://web.dev/media-capturing-images/
+                    "The capture attribute works on Android and iOS, but is
+                    ignored on desktop. Be aware, however, that on Android this
+                    means that the user will no longer have the option of
+                    choosing an existing picture. The system camera app will be
+                    started directly, instead."
+                -->
             </div>
 
             <div class="mb-3">
