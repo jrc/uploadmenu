@@ -61,24 +61,19 @@ function getCountryCodeFromGooglePlace(place) {
 }
 
 function getAllLanguageDicts() {
-    const allLanguageCodes = [
-        ...new Set(Object.values(countryToLanguagesData).flat()),
-    ];
+    const allLanguageCodes = [...new Set(Object.values(countryToLanguagesData).flat())];
     const intlDisplayNames = new Intl.DisplayNames([navigator.language], { type: 'language' });
 
-    const cleanedLanguageCodes = allLanguageCodes
-        .map(code => code.split('_')[0]);
-
-    return cleanedLanguageCodes
+    const languageDicts = allLanguageCodes.reduce((dicts, code) => {
+        const displayName = intlDisplayNames.of(code);
         // Filter out unsupported languages (with no display names)
-        .filter(code => {
-            const displayName = intlDisplayNames.of(code);
-            return displayName !== code;
-        })
-        .map(code => ({
-            code,
-            displayName: intlDisplayNames.of(code)
-        }));
+        if (displayName !== code) {
+            dicts[code] = { code, displayName };
+        }
+        return dicts;
+    }, {});
+
+    return Object.values(languageDicts);
 }
 
 
@@ -164,8 +159,10 @@ function updateLanguageSelectElement() {
         const cuisine = cuisinesData
             .flatMap((category) => category.children)
             .find((cuisine) => cuisine.cuisine_id === selectedCuisineId);
+
         for (const c of cuisine.language_codes) {
-            specifiedLanguageCodes.push(c);
+            const cleanedCodes = c.map(code => code.match(/[a-zA-Z]+/)[0]);
+            specifiedLanguageCodes.push(...cleanedCodes);
         }
     }
 
