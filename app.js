@@ -5,31 +5,6 @@ AWS.config.update({
     region: 'us-east-1'
 });
 
-// Create an instance of the S3 service
-const s3 = new AWS.S3();
-
-// Function to upload a file to S3
-function uploadFileToS3(file, bucketName, key) {
-    // Read the file contents
-    const fileContent = file;
-
-    // Set the parameters for S3 upload
-    const params = {
-        Bucket: bucketName,
-        Key: key,
-        Body: fileContent
-    };
-
-    // Upload the file to S3
-    s3.upload(params, function (err, data) {
-        if (err) {
-            console.error("Error uploading file:", err);
-        } else {
-            console.log("File uploaded successfully.", data.Location);
-        }
-    });
-}
-
 
 let autocomplete = null;
 
@@ -201,6 +176,9 @@ document.getElementById('upload-form').addEventListener('submit', async (event) 
             Key: fileName,
             Body: file,
         };
+
+        // Create an instance of the S3 service
+        const s3 = new AWS.S3();
         await s3.upload(s3Params).promise();
 
         // Store data in DynamoDB
@@ -211,8 +189,12 @@ document.getElementById('upload-form').addEventListener('submit', async (event) 
                 ...data,
             },
         };
+        // Create an instance of the DynamoDB service
+        const dynamoDB = new AWS.DynamoDB();
         await dynamoDB.put(dynamoDBParams).promise();
     } catch (error) {
+        console.error(error);
+
         // Handle error
         alert(error);
         return; // Abort further execution
