@@ -35,6 +35,19 @@ function hideButtonSpinner() {
     buttonText.textContent = 'Submit';
 }
 
+// Function to show the success alert
+function showSuccessAlert() {
+    const container = document.getElementById('success-alert-container');
+    container.removeAttribute('hidden');
+    setTimeout(hideSuccessAlert, 10000); // Hide after 10 seconds
+}
+
+// Function to hide the success alert
+function hideSuccessAlert() {
+    const container = document.getElementById('success-alert-container');
+    container.setAttribute('hidden', 'true');
+}
+
 function getCountryCodeFromGooglePlace(place) {
     if (place && place.address_components) {
         const countryComponent = place.address_components.find((component) =>
@@ -244,13 +257,16 @@ async function handleSubmit(fileData, fileName, formDict) {
 
         // Hide the spinner
         hideButtonSpinner()
+
+        // Show the success alert after form submission
+        showSuccessAlert();
     } catch (error) {
         console.error(error);
 
         // Hide the spinner in case of error
         hideButtonSpinner()
 
-        // Handle error
+        // Show the error alert after form submission
         alert(error);
         return; // Abort further execution
     }
