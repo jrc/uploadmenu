@@ -6,12 +6,11 @@ AWS.config.update({
 });
 
 
+// Declare Google Places autocomplete object outside of form submit handler
 let autocomplete = null;
 
 
 function initializePlaceAutocompleteInputElement() {
-    const input = document.getElementById('place-input');
-
     // Create a script element to load the Google Places API
     const script = document.createElement('script');
     script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyAOOLkyoR2VO_RGuhGyZBdE7T2WXHJvrbo&libraries=places&callback=initializeAutocomplete';
@@ -20,8 +19,10 @@ function initializePlaceAutocompleteInputElement() {
     // Append the script element to the document
     document.body.appendChild(script);
 
-    // Callback function to initialize the auto-complete after the API is loaded
+    // Callback to initialize the auto-complete after Google Maps JavaScript API is loaded
     window.initializeAutocomplete = function () {
+        const placeInput = document.getElementById('place-input');
+
         const options = {
             // Restrict the results to restaurants only
             types: ['restaurant'],
@@ -31,7 +32,7 @@ function initializePlaceAutocompleteInputElement() {
 
         // Create the auto-complete object using the Maps JavaScript API
         // https://developers.google.com/maps/documentation/javascript/place-autocomplete
-        autocomplete = new google.maps.places.Autocomplete(input, options);
+        autocomplete = new google.maps.places.Autocomplete(placeInput, options);
 
         autocomplete.addListener('place_changed', function () {
             updateLanguageSelectElement();
@@ -81,6 +82,18 @@ function initializeCuisineSelectOptions() {
     });
 }
 
+function getCountryCodeFromGooglePlace(place) {
+    if (place && place.address_components) {
+        const countryComponent = place.address_components.find(component =>
+            component.types.includes('country')
+        );
+        if (countryComponent) {
+            return countryComponent.short_name;
+        }
+    }
+    return null;
+}
+
 function updateLanguageSelectElement() {
     const cuisineSelectElement = document.getElementById('cuisine');
     const languagesSelectElement = document.getElementById('languages');
@@ -97,26 +110,10 @@ function updateLanguageSelectElement() {
     }
 
     // Then add the language(s) of selected place's country
-    if (autocomplete) {
-        const place = autocomplete.getPlace();
-        if (place && place.address_components) {
-            const countryComponent = place.address_components.find(component =>
-                component.types.includes('country')
-            );
-            if (countryComponent) {
-                const countryCode = countryComponent.short_name;
-                console.log('Country Code (from selected place):', countryCode);
+    const place = autocomplete.getPlace();
 
-                for (const c of countryToLanguagesData[countryCode]) {
-                    if (!specifiedLanguageCodes.includes(c)) {
-                        specifiedLanguageCodes.push(c);
-                    }
-                }
-            } else {
-                console.error('Country not found for the selected place.');
-            }
-        }
-    }
+    const countryCode = getCountryCodeFromGooglePlace(place);
+    console.log('Country Code (from selected place):', countryCode);
 
     // Get display names for language codes
     const allLanguageCodes = [...new Set(Object.values(countryToLanguagesData).flat())];
@@ -153,11 +150,16 @@ function updateLanguageSelectElement() {
     });
 }
 
+// Executes when the initial HTML document has been loaded and parsed
 document.addEventListener('DOMContentLoaded', function () {
     initializePlaceAutocompleteInputElement();
     initializeCuisineSelectOptions();
-    updateLanguageSelectElement();
 });
+
+// Executes when the entire web page, including all external resources, has finished loading
+window.onload = function () {
+    updateLanguageSelectElement();
+};
 
 
 function slugify(str, maxLength) {
@@ -197,47 +199,45 @@ function hideButtonSpinner() {
 document.getElementById('upload-form').addEventListener('submit', async (event) => {
     event.preventDefault(); // Prevent the form from submitting normally
 
-    // Show the spinner
-    showButtonSpinner();
-
     const formElement = event.target;
     const formData = new FormData(formElement);
 
+    // Extract form fields
+    const formDict = {};
+    for (const [name, value] of formData.entries()) {
+        if (name === 'languages') {
+            formDict[name] = formData.getAll(name);
+        } else if (name !== 'photo') {
+            formDict[name] = value;
+        }
+    }
+
+    // Include details of the selected place
+    const place = autocomplete.getPlace();
+    formDict['place_id'] = place.place_id;
+    formDict['place_name'] = place.name;
+    formDict['place_country_code'] = getCountryCodeFromGooglePlace(place);
+
+    const uuidNoHyphens = uuidv4().replace(/-/g, '');
+    const placeCountryCodeOrQuestionMarks = formDict['place_country_code'] || '??';
+
+    const originalFileName = formData.get('photo').name;
+    const fileExtension = originalFileName.split('.').pop(); // Extract the file extension
+
+    const fileName = `${uuidNoHyphens}_${placeCountryCodeOrQuestionMarks}_${slugify(place.name, 24)}.` + fileExtension;
+    formDict['filename'] = fileName;
+
+    console.log('Form Dict:', formDict);
+
+    // Show the spinner
+    showButtonSpinner();
+
     try {
-        // Extract form fields
-        const data = {};
-        for (const [name] of formData.entries()) {
-            if (name === 'languages') {
-                data[name] = formData.getAll(name);
-            } else if (name !== 'photo') {
-                data[name] = value;
-            }
-        }
-        console.log('Form Data:', data);
-
         // Upload file to S3
-        const file = formData.get('photo');
-        const place = autocomplete.getPlace();
-
-        const uuid = uuidv4();
-        const uuidNoHyphens = uuid.replace(/-/g, '');
-
-        let placeCountryCode = '??';
-        if (place.address_components) {
-            const countryComponent = place.address_components.find(component =>
-                component.types.includes('country')
-            );
-            if (countryComponent) {
-                placeCountryCode = countryComponent.short_name;
-            }
-        }
-        const fileName = `${uuidNoHyphens}_${placeCountryCode}_${slugify(place.name, 24)}`;
-        console.log(fileName);
-
         const s3Params = {
             Bucket: 'us.jrcpl.foodtbd.uploadmenu',
             Key: fileName,
-            Body: file,
+            Body: formData.get('photo')
         };
 
         // Create an instance of the S3 service
@@ -249,7 +249,8 @@ document.getElementById('upload-form').addEventListener('submit', async (event) 
             TableName: 'us.jrcpl.foodtbd.uploadmenu',
             Item: {
                 id: uuidv4(),
-                ...data,
+                filename: fileName,
+                ...formDict
             },
         };
         // Create an instance of the DynamoDB service
