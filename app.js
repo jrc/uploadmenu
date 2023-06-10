@@ -1,9 +1,9 @@
 // Google Place autocomplete object, needed by submit handler
 let autocomplete = null;
 
-/* Helpers */
+/* Utility functions */
 
-const slugify = (str, maxLength) => {
+function slugify(str, maxLength) {
     let slug = str
         .toLowerCase()
         .replace(/[^\w\s-]/g, '')
@@ -17,50 +17,9 @@ const slugify = (str, maxLength) => {
     return slug;
 }
 
-function showButtonSpinner() {
-    const [submitButton, buttonSpinner, buttonText] = ['submit-button', 'button-spinner', 'button-text']
-        .map(id => document.getElementById(id));
-
-    submitButton.disabled = true;
-    buttonSpinner.classList.remove('d-none');
-    buttonText.textContent = 'Uploading…';
-}
-
-function hideButtonSpinner() {
-    const [submitButton, buttonSpinner, buttonText] = ['submit-button', 'button-spinner', 'button-text']
-        .map(id => document.getElementById(id));
-
-    submitButton.disabled = false;
-    buttonSpinner.classList.add('d-none');
-    buttonText.textContent = 'Submit';
-}
-
-// Function to show the success alert
-function showSuccessAlert() {
-    const container = document.getElementById('success-alert-container');
-    container.removeAttribute('hidden');
-    setTimeout(hideSuccessAlert, 10000); // Hide after 10 seconds
-}
-
-// Function to hide the success alert
-function hideSuccessAlert() {
-    const container = document.getElementById('success-alert-container');
-    container.setAttribute('hidden', 'true');
-}
-
-function getCountryCodeFromGooglePlace(place) {
-    if (place && place.address_components) {
-        const countryComponent = place.address_components.find((component) =>
-            component.types.includes('country')
-        );
-        if (countryComponent) {
-            return countryComponent.short_name;
-        }
-    }
-    return null;
-}
-
 function getAllLanguageDicts() {
+    // Extract all language codes from countryToLanguagesData (in data.js),
+    // ignoring any optional script codes
     const allLanguageCodes = [...new Set(Object.values(countryToLanguagesData)
         .flat()
         .map(language => language.split('_')[0]))];
@@ -76,20 +35,51 @@ function getAllLanguageDicts() {
     }, []);
 }
 
+function getCountryCodeFromGooglePlace(place) {
+    return place?.address_components
+        ?.find(component => component.types.includes('country'))
+        ?.short_name ?? null;
+}
+
+
+/* UI functions */
+
+function showButtonSpinner() {
+    const [submitButton, buttonSpinner, buttonText] = ['submit-button', 'button-spinner', 'button-text']
+        .map(id => document.getElementById(id));
+
+    submitButton.disabled = true;
+    buttonSpinner.classList.remove('d-none');
+    buttonText.textContent = 'Uploading…'; // XXX: LOCALIZABLE STRING
+}
+
+function hideButtonSpinner() {
+    const [submitButton, buttonSpinner, buttonText] = ['submit-button', 'button-spinner', 'button-text']
+        .map(id => document.getElementById(id));
+
+    submitButton.disabled = false;
+    buttonSpinner.classList.add('d-none');
+    buttonText.textContent = 'Submit'; // XXX: LOCALIZABLE STRING
+}
+
+function showSuccessAlert() {
+    const container = document.getElementById('success-alert-container');
+    container.removeAttribute('hidden');
+    setTimeout(hideSuccessAlert, 10000); // Hide after 10 seconds
+}
+
+function hideSuccessAlert() {
+    const container = document.getElementById('success-alert-container');
+    container.setAttribute('hidden', 'true');
+}
+
 
 /* Main functions */
-
-// Configure the SDK with your AWS credentials
-AWS.config.update({
-    accessKeyId: 'AKIA4A4KQJ74GPF37HBZ',
-    secretAccessKey: 'qw3nX2s/pVkqKESntdt8KvEwSR4yvzhWMP6Yp8/Y',
-    region: 'us-east-1'
-});
 
 function initializePlaceAutocompleteInputElement() {
     // Google Places API initialization code
     const script = document.createElement('script');
-    script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyAOOLkyoR2VO_RGuhGyZBdE7T2WXHJvrbo&libraries=places&callback=initializeAutocomplete';
+    script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyAOOLkyoR2VO_RGuhGyZBdE7T2WXHJvrbo&libraries=places&callback=initializeAutocomplete'; // XXX
     script.defer = true;
 
     document.body.appendChild(script);
@@ -97,24 +87,23 @@ function initializePlaceAutocompleteInputElement() {
 
 function initializeCuisineSelectOptions() {
     const cuisineSelectElement = document.getElementById('cuisine');
-
     cuisineSelectElement.innerHTML = '';
 
     // Start with an empty option for the "no selection" case
     const dummyOption = new Option();
     cuisineSelectElement.appendChild(dummyOption);
 
-    cuisinesData.forEach((category) => {
+    for (const category of cuisinesData) {
         const optgroup = document.createElement('optgroup');
         optgroup.label = category.category_name_en;
 
-        category.children.map((cuisine) => {
+        for (const cuisine of category.children) {
             const option = new Option(cuisine.cuisine_name_en, cuisine.cuisine_id);
             optgroup.appendChild(option);
-        });
+        }
 
         cuisineSelectElement.appendChild(optgroup);
-    });
+    }
 }
 
 function initializeAutocomplete() {
@@ -123,6 +112,7 @@ function initializeAutocomplete() {
         types: ['restaurant'],
         fields: ['name', 'address_components', 'place_id'],
     };
+
     autocomplete = new google.maps.places.Autocomplete(placeInput, options);
     autocomplete.addListener('place_changed', updateLanguageSelectElement);
 
@@ -134,7 +124,7 @@ function initializeAutocomplete() {
 
                 const circle = new google.maps.Circle({
                     center: { lat: latitude, lng: longitude },
-                    radius: 5000,
+                    radius: 5000, // 5 km (sensible default for Place Autocomplete)
                 });
 
                 autocomplete.setBounds(circle.getBounds());
@@ -149,60 +139,54 @@ function initializeAutocomplete() {
 // Fill out language HTML multi-select element options
 function updateLanguageSelectElement() {
     const cuisineSelectElement = document.getElementById('cuisine');
-    const languagesSelectElement = document.getElementById('languages');
 
-    let specifiedLanguageCodes = [];
+    const suggestedLanguageCodes = [];
 
-    // First add the language(s) from the selected cuisine
+    // First suggest languages of the selected cuisine
     const selectedCuisineId = cuisineSelectElement.value;
     if (selectedCuisineId) {
         const cuisine = cuisinesData
-            .flatMap((category) => category.children)
-            .find((cuisine) => cuisine.cuisine_id === selectedCuisineId);
+            .flatMap(category => category.children)
+            .find(cuisine => cuisine.cuisine_id === selectedCuisineId);
 
-        for (const c of cuisine.language_codes) {
-            const cleanedCodes = c.map(code => code.match(/[a-zA-Z]+/)[0]);
-            specifiedLanguageCodes.push(...cleanedCodes);
-        }
+        cuisine.language_codes.forEach(languageCode => {
+            const c = languageCode.match(/[a-zA-Z]+/)[0];
+            suggestedLanguageCodes.push(c);
+        });
     }
 
-    // Then add the language(s) of selected place's country
+    // Then suggest languages of the place's country
     const place = autocomplete.getPlace();
     if (place) {
         const placeCountryCode = getCountryCodeFromGooglePlace(place);
         console.log('Country Code (from selected place):', placeCountryCode);
 
         if (placeCountryCode) {
-            for (const c of countryToLanguagesData[placeCountryCode]) {
-                if (!specifiedLanguageCodes.includes(c)) {
-                    specifiedLanguageCodes.push(c);
-                }
-            }
+            countryToLanguagesData[placeCountryCode]
+                .forEach(c => {
+                    if (!suggestedLanguageCodes.includes(c)) {
+                        suggestedLanguageCodes.push(c);
+                    }
+                });
         }
     }
 
-    // Get display names for language codes
+    // Sort all languages by display name
     const languageDicts = getAllLanguageDicts();
+    languageDicts.sort((a, b) => a.displayName.localeCompare(b.displayName));
 
-    // Sort language codes by display name
-    languageDicts.sort((a, b) =>
-        a.displayName.localeCompare(b.displayName)
+    // Move the suggested languages to the top of the list
+    const orderedLanguageCodes = suggestedLanguageCodes.concat(
+        languageDicts.filter(x => !suggestedLanguageCodes.includes(x.code))
+            .map(x => x.code)
     );
 
-    // Move specified language codes to the front
-    const reorderedLanguageCodes = specifiedLanguageCodes.concat(
-        languageDicts
-            .map((x) => x.code)
-            .filter((code) => !specifiedLanguageCodes.includes(code))
-    );
-
-    // Clear the select element
+    const languagesSelectElement = document.getElementById('languages');
     languagesSelectElement.innerHTML = '';
 
-    // Populate select element
-    reorderedLanguageCodes.forEach((code) => {
+    orderedLanguageCodes.forEach(code => {
         const option = document.createElement("option");
-        const displayName = languageDicts.find((x) => x.code === code).displayName;
+        const displayName = languageDicts.find(x => x.code === code).displayName;
         option.text = displayName;
         option.value = code;
         languagesSelectElement.appendChild(option);
@@ -214,6 +198,13 @@ function updateLanguageSelectElement() {
 
 // This executes when the initial HTML document has been loaded and parsed
 document.addEventListener('DOMContentLoaded', () => {
+    // Configure the SDK with your AWS credentials
+    AWS.config.update({
+        accessKeyId: 'AKIA4A4KQJ74GPF37HBZ', // XXX
+        secretAccessKey: 'qw3nX2s/pVkqKESntdt8KvEwSR4yvzhWMP6Yp8/Y', // XXX
+        region: 'us-east-1'
+    });
+
     initializePlaceAutocompleteInputElement();
     initializeCuisineSelectOptions();
 });
@@ -223,85 +214,85 @@ window.addEventListener('load', async () => {
     updateLanguageSelectElement();
 });
 
+
+// Helper function to upload file to S3
+async function uploadToS3(fileData, fileName) {
+    const s3Params = {
+        Bucket: 'us.jrcpl.foodtbd.uploadmenu',
+        Key: fileName,
+        Body: fileData
+    };
+
+    const s3 = new AWS.S3();
+    await s3.upload(s3Params).promise();
+}
+
+// Helper function to store data in DynamoDB
+async function storeInDynamoDB(fileName, formDict) {
+    const dynamoDBParams = {
+        TableName: 'us.jrcpl.foodtbd.uploadmenu',
+        Item: {
+            id: uuidv4(),
+            filename: fileName,
+            ...formDict
+        }
+    };
+
+    const dynamoDB = new AWS.DynamoDB.DocumentClient();
+    await dynamoDB.put(dynamoDBParams).promise();
+}
+
+// Helper function to handle form submission
 async function handleSubmit(fileData, fileName, formDict) {
-    // Show the spinner
-    showButtonSpinner();
-
     try {
-        // Upload file to S3
-        const s3Params = {
-            Bucket: 'us.jrcpl.foodtbd.uploadmenu',
-            Key: fileName,
-            Body: fileData
-        };
+        showButtonSpinner();
 
-        // Create an instance of the S3 service
-        const s3 = new AWS.S3();
-        await s3.upload(s3Params).promise();
+        await uploadToS3(fileData, fileName);
+        await storeInDynamoDB(fileName, formDict);
 
-        // Store data in DynamoDB
-        const dynamoDBParams = {
-            TableName: 'us.jrcpl.foodtbd.uploadmenu',
-            Item: {
-                id: uuidv4(),
-                filename: fileName,
-                ...formDict
-            },
-        };
-        // Create an instance of the DynamoDB service
-        const dynamoDB = new AWS.DynamoDB.DocumentClient();
-        await dynamoDB.put(dynamoDBParams).promise();
-
-        // Hide the spinner
-        hideButtonSpinner()
-
-        // Show the success alert after form submission
+        hideButtonSpinner();
         showSuccessAlert();
     } catch (error) {
         console.error(error);
 
-        // Hide the spinner in case of error
-        hideButtonSpinner()
-
-        // Show the error alert after form submission
+        hideButtonSpinner();
         alert(error);
-        return; // Abort further execution
+        return;
     }
 }
 
 // Form submission
 document.getElementById('upload-form').addEventListener('submit', async (event) => {
-    event.preventDefault(); // Prevent the form from submitting normally
+    event.preventDefault();
 
     const formElement = event.target;
     const formData = new FormData(formElement);
 
-    // Extract form fields
+    // Extract form fields except 'photo'
     const formDict = {};
     for (const [name, value] of formData.entries()) {
-        if (name === 'languages') {
-            formDict[name] = formData.getAll(name);
-        } else if (name !== 'photo') {
+        if (name !== 'photo') {
             formDict[name] = value;
         }
     }
 
-    // Include details of the selected place
     const place = autocomplete.getPlace();
-    formDict['place_id'] = place.place_id;
-    formDict['place_name'] = place.name;
-    formDict['place_country_code'] = getCountryCodeFromGooglePlace(place);
+    const placeCountryCode = getCountryCodeFromGooglePlace(place) || '??';
 
     const uuidNoHyphens = uuidv4().replace(/-/g, '');
-    const placeCountryCodeOrQuestionMarks = formDict['place_country_code'] || '??';
-
     const originalFileName = formData.get('photo').name;
     const fileExtension = originalFileName.split('.').pop();
+    const fileName = `${uuidNoHyphens}_${placeCountryCode}_${slugify(place.name, 24)}.${fileExtension}`;
 
-    const fileName = `${uuidNoHyphens}_${placeCountryCodeOrQuestionMarks}_${slugify(place.name, 24)}.${fileExtension}`;
-    formDict['filename'] = fileName;
+    const formDataWithDetails = {
+        ...formDict,
+        place_id: place.place_id,
+        place_name: place.name,
+        place_country_code: placeCountryCode,
+        filename: fileName
+    };
 
-    console.log('Form Dict:', formDict);
+    console.log('Form Dict:', formDataWithDetails);
 
-    await handleSubmit(formData.get('photo'), fileName, formDict);
+    await handleSubmit(formData.get('photo'), fileName, formDataWithDetails);
 });

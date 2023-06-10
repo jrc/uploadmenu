@@ -1051,13 +1051,6 @@ const cuisinesData = [
                 ]
             },
             {
-                "cuisine_id": "AMERICAS.NORTH.NEW",
-                "cuisine_name_en": "North > New American",
-                "language_codes": [
-                    "en"
-                ]
-            },
-            {
                 "cuisine_id": "AMERICAS.NORTH.TEXMEX",
                 "cuisine_name_en": "North > Tex-Mex",
                 "language_codes": [
@@ -1112,6 +1105,13 @@ const cuisinesData = [
             {
                 "cuisine_id": "AMERICAS.NORTH.US.SOUTH",
                 "cuisine_name_en": "North > American > Southern/Soul Food",
+                "language_codes": [
+                    "en"
+                ]
+            },
+            {
+                "cuisine_id": "AMERICAS.NORTH.NEW",
+                "cuisine_name_en": "North > New American",
                 "language_codes": [
                     "en"
                 ]
@@ -1466,8 +1466,8 @@ const cuisinesData = [
                 ]
             },
             {
-                "cuisine_id": "EUROPE.NORDIC.NEW",
-                "cuisine_name_en": "Nordic > New Nordic",
+                "cuisine_id": "EUROPE.NORDIC.SCANDINAVIAN",
+                "cuisine_name_en": "Nordic > Scandinavian",
                 "language_codes": [
                     "da",
                     "nb",
@@ -1475,8 +1475,8 @@ const cuisinesData = [
                 ]
             },
             {
-                "cuisine_id": "EUROPE.NORDIC.SCANDINAVIAN",
-                "cuisine_name_en": "Nordic > Scandinavian",
+                "cuisine_id": "EUROPE.NORDIC.NEW",
+                "cuisine_name_en": "Nordic > New Nordic",
                 "language_codes": [
                     "da",
                     "fi",
@@ -1557,6 +1557,13 @@ const cuisinesData = [
         "category_name_en": "Middle Eastern & North African",
         "children": [
             {
+                "cuisine_id": "MIDDLEEASTNORTHAFRICA.MIDDLEEAST",
+                "cuisine_name_en": "Middle Eastern",
+                "language_codes": [
+                    "ar"
+                ]
+            },
+            {
                 "cuisine_id": "MIDDLEEASTNORTHAFRICA.IR",
                 "cuisine_name_en": "Middle Eastern > Persian",
                 "language_codes": [
@@ -1594,17 +1601,10 @@ const cuisinesData = [
                 ]
             },
             {
-                "cuisine_id": "MIDDLEEASTNORTHAFRICA.MA",
-                "cuisine_name_en": "North African > Moroccan",
+                "cuisine_id": "MIDDLEEASTNORTHAFRICA.TR",
+                "cuisine_name_en": "Middle Eastern > Turkish",
                 "language_codes": [
-                    "ar"
-                ]
-            },
-            {
-                "cuisine_id": "MIDDLEEASTNORTHAFRICA.MIDDLEEAST",
-                "cuisine_name_en": "Middle Eastern",
-                "language_codes": [
-                    "ar"
+                    "tr"
                 ]
             },
             {
@@ -1616,10 +1616,10 @@ const cuisinesData = [
                 ]
             },
             {
-                "cuisine_id": "MIDDLEEASTNORTHAFRICA.TR",
-                "cuisine_name_en": "Middle Eastern > Turkish",
+                "cuisine_id": "MIDDLEEASTNORTHAFRICA.MA",
+                "cuisine_name_en": "North African > Moroccan",
                 "language_codes": [
-                    "tr"
+                    "ar"
                 ]
             }
         ]
