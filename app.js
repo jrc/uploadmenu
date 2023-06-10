@@ -158,8 +158,18 @@ function updateLanguageSelectElement() {
 
     // Then add the language(s) of selected place's country
     const place = autocomplete.getPlace();
-    const countryCode = getCountryCodeFromGooglePlace(place);
-    console.log('Country Code (from selected place):', countryCode);
+    if (place) {
+        const placeCountryCode = getCountryCodeFromGooglePlace(place);
+        console.log('Country Code (from selected place):', placeCountryCode);
+
+        if (placeCountryCode) {
+            for (const c of countryToLanguagesData[placeCountryCode]) {
+                if (!specifiedLanguageCodes.includes(c)) {
+                    specifiedLanguageCodes.push(c);
+                }
+            }
+        }
+    }
 
     // Get display names for language codes
     const languageDicts = getAllLanguageDicts();
