@@ -162,7 +162,7 @@ document.getElementById('upload-form').addEventListener('submit', async (event) 
         // Extract form fields
         const data = {};
         for (const [name] of formData.entries()) {
-            if (name !== 'file') {
+            if (name !== 'photo') {
                 data[name] = formData.getAll(name);
             }
         }
