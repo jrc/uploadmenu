@@ -136,13 +136,18 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
-function formDataToDict(formData) {
-    const dict = {};
-    for (let entry of formData.entries()) {
-        const [key, value] = entry;
-        dict[key] = value;
+function slugify(str, maxLength) {
+    let slug = str
+        .toLowerCase() // Convert the string to lowercase
+        .replace(/[^\w\s-]/g, '') // Remove non-word characters except spaces and hyphens
+        .replace(/\s+/g, '-') // Replace spaces with hyphens
+        .trim(); // Trim leading/trailing spaces
+
+    if (slug.length > maxLength) {
+        slug = slug.substring(0, maxLength); // Truncate the slug to the specified maximum length
     }
-    return dict;
+
+    return slug;
 }
 
 function showButtonSpinner() {
@@ -174,10 +179,6 @@ document.getElementById('upload-form').addEventListener('submit', async (event) 
     const formElement = event.target;
     const formData = new FormData(formElement);
 
-    // Retrieve the selected place from the auto-complete field
-    // const place = document.getElementById('place-input').value;
-    // formData.append('place', place); // Append the selected place to the form data
-
     try {
         // Extract form fields
         const data = {};
@@ -192,7 +193,12 @@ document.getElementById('upload-form').addEventListener('submit', async (event) 
 
         // Upload file to S3
         const file = formData.get('photo');
-        const fileName = `${uuidv4()}_${file.name}`;
+        const place = document.getElementById('place-input').value;
+        print(place);
+        const placeName = place.name;
+        print(placeName);
+        const fileName = `${uuidv4()}_${slugify(placeName, 24)}`;
+
         const s3Params = {
             Bucket: 'us.jrcpl.foodtbd.uploadmenu',
             Key: fileName,
