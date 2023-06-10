@@ -61,19 +61,19 @@ function getCountryCodeFromGooglePlace(place) {
 }
 
 function getAllLanguageDicts() {
-    const allLanguageCodes = [...new Set(Object.values(countryToLanguagesData).flat())];
+    const allLanguageCodes = [...new Set(Object.values(countryToLanguagesData)
+        .flat()
+        .map(language => language.split('_')[0]))];
+
     const intlDisplayNames = new Intl.DisplayNames([navigator.language], { type: 'language' });
 
-    const languageDicts = allLanguageCodes.reduce((dicts, code) => {
+    return allLanguageCodes.reduce((dicts, code) => {
         const displayName = intlDisplayNames.of(code);
-        // Filter out unsupported languages (with no display names)
-        if (displayName !== code) {
-            dicts[code] = { code, displayName };
-        }
-        return dicts;
-    }, {});
+        if (displayName === code) return dicts; // Skip unsupported languages
 
-    return Object.values(languageDicts);
+        dicts.push({ code, displayName });
+        return dicts;
+    }, []);
 }
 
 
@@ -192,7 +192,7 @@ function updateLanguageSelectElement() {
     // Move specified language codes to the front
     const reorderedLanguageCodes = specifiedLanguageCodes.concat(
         languageDicts
-            .map((obj) => obj.code)
+            .map((x) => x.code)
             .filter((code) => !specifiedLanguageCodes.includes(code))
     );
 
@@ -202,7 +202,7 @@ function updateLanguageSelectElement() {
     // Populate select element
     reorderedLanguageCodes.forEach((code) => {
         const option = document.createElement("option");
-        const displayName = languageDicts.find((obj) => obj.code === code).displayName;
+        const displayName = languageDicts.find((x) => x.code === code).displayName;
         option.text = displayName;
         option.value = code;
         languagesSelectElement.appendChild(option);
