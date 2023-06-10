@@ -933,477 +933,728 @@ const countryToLanguagesData = {
 };
 
 
-const cuisinesData = {
-    "AFRICA.EAST.ET": {
-        "category_name": "African > East > Ethiopian",
-        "language_codes": [
-            "am",
-            "en"
+/*
+import csv
+import json
+
+tsv_file = 'cuisines.tsv'
+json_file = 'cuisines.json'
+
+# Read TSV data and create an array of dictionaries
+data = []
+with open(tsv_file, 'r') as file:
+    reader = csv.DictReader(file, delimiter='\t')
+    fieldnames = reader.fieldnames  # Get the field names from the TSV header
+    for row in reader:
+        if any(row.values()):  # Check if any value in the row is non-empty
+            category_id = row['category_id']
+            category_name_en = row['category_name_en']
+            # Create the cuisine dictionary with non-category fields
+            cuisine = {fieldname: row[fieldname] if fieldname != 'language_codes' else row[fieldname].split(', ') for fieldname in fieldnames if not fieldname.startswith('category')}
+            # Find or create the category dictionary
+            category_index = next((index for index, cat in enumerate(data) if cat["category_id"] == category_id), None)
+            if category_index is None:
+                category = {"category_id": category_id, "category_name_en": category_name_en, "children": [cuisine]}
+                data.append(category)
+            else:
+                data[category_index]["children"].append(cuisine)
+
+# Write JSON data to file
+with open(json_file, 'w') as file:
+    json.dump(data, file, indent=4)
+*/
+
+const cuisinesData = [
+    {
+        "category_id": "AFRICA",
+        "category_name_en": "African (Sub-Saharan)",
+        "children": [
+            {
+                "cuisine_id": "AFRICA.EAST.ET",
+                "cuisine_name_en": "East > Ethiopian",
+                "language_codes": [
+                    "am",
+                    "en"
+                ]
+            },
+            {
+                "cuisine_id": "AFRICA.PAN",
+                "cuisine_name_en": "Pan-African",
+                "language_codes": [
+                    "am",
+                    "en"
+                ]
+            }
         ]
     },
-    "AFRICA.PAN": {
-        "category_name": "African > Pan-African",
-        "language_codes": null
-    },
-    "AMERICAS.CARIBBEAN": {
-        "category_name": "Americas > Caribbean",
-        "language_codes": null
-    },
-    "AMERICAS.CARIBBEAN.CU": {
-        "category_name": "Americas > Caribbean > Cuban",
-        "language_codes": [
-            "es"
+    {
+        "category_id": "AMERICAS",
+        "category_name_en": "American",
+        "children": [
+            {
+                "cuisine_id": "AMERICAS.CARIBBEAN",
+                "cuisine_name_en": "Caribbean",
+                "language_codes": [
+                    "en",
+                    "es",
+                    "fr"
+                ]
+            },
+            {
+                "cuisine_id": "AMERICAS.CARIBBEAN.CU",
+                "cuisine_name_en": "Caribbean > Cuban",
+                "language_codes": [
+                    "es"
+                ]
+            },
+            {
+                "cuisine_id": "AMERICAS.LATIN",
+                "cuisine_name_en": "Latin American",
+                "language_codes": [
+                    "es",
+                    "pt"
+                ]
+            },
+            {
+                "cuisine_id": "AMERICAS.LATIN.AR",
+                "cuisine_name_en": "Latin > Argentinian",
+                "language_codes": [
+                    "es"
+                ]
+            },
+            {
+                "cuisine_id": "AMERICAS.LATIN.BR",
+                "cuisine_name_en": "Latin > Brazilian",
+                "language_codes": [
+                    "pt"
+                ]
+            },
+            {
+                "cuisine_id": "AMERICAS.LATIN.MX",
+                "cuisine_name_en": "Latin > Mexican",
+                "language_codes": [
+                    "es"
+                ]
+            },
+            {
+                "cuisine_id": "AMERICAS.LATIN.PE",
+                "cuisine_name_en": "Latin > Peruvian",
+                "language_codes": [
+                    "es"
+                ]
+            },
+            {
+                "cuisine_id": "AMERICAS.NORTH.BURGER",
+                "cuisine_name_en": "North > Burger",
+                "language_codes": [
+                    "en"
+                ]
+            },
+            {
+                "cuisine_id": "AMERICAS.NORTH.NEW",
+                "cuisine_name_en": "North > New American",
+                "language_codes": [
+                    "en"
+                ]
+            },
+            {
+                "cuisine_id": "AMERICAS.NORTH.TEXMEX",
+                "cuisine_name_en": "North > Tex-Mex",
+                "language_codes": [
+                    "en",
+                    "es"
+                ]
+            },
+            {
+                "cuisine_id": "AMERICAS.NORTH.TEXMEX.BURRITO",
+                "cuisine_name_en": "North > Tex-Mex > Burrito",
+                "language_codes": [
+                    "en",
+                    "es"
+                ]
+            },
+            {
+                "cuisine_id": "AMERICAS.NORTH.TEXMEX.TACO",
+                "cuisine_name_en": "North > Tex-Mex > Taco",
+                "language_codes": [
+                    "en",
+                    "es"
+                ]
+            },
+            {
+                "cuisine_id": "AMERICAS.NORTH.US",
+                "cuisine_name_en": "North > American",
+                "language_codes": [
+                    "en"
+                ]
+            },
+            {
+                "cuisine_id": "AMERICAS.NORTH.US.BBQ",
+                "cuisine_name_en": "North > American > BBQ",
+                "language_codes": [
+                    "en"
+                ]
+            },
+            {
+                "cuisine_id": "AMERICAS.NORTH.US.CAJUN",
+                "cuisine_name_en": "North > American > Cajun",
+                "language_codes": [
+                    "en"
+                ]
+            },
+            {
+                "cuisine_id": "AMERICAS.NORTH.US.HI",
+                "cuisine_name_en": "North > American > Hawaiian",
+                "language_codes": [
+                    "en"
+                ]
+            },
+            {
+                "cuisine_id": "AMERICAS.NORTH.US.SOUTH",
+                "cuisine_name_en": "North > American > Southern/Soul Food",
+                "language_codes": [
+                    "en"
+                ]
+            }
         ]
     },
-    "AMERICAS.LATIN": {
-        "category_name": "Americas > Latin American",
-        "language_codes": null
-    },
-    "AMERICAS.LATIN.AR": {
-        "category_name": "Americas > Latin > Argentinian",
-        "language_codes": [
-            "es"
+    {
+        "category_id": "ASIA",
+        "category_name_en": "Asian",
+        "children": [
+            {
+                "cuisine_id": "ASIA.CENTRAL.MN",
+                "cuisine_name_en": "Central > Mongolian",
+                "language_codes": [
+                    "mn"
+                ]
+            },
+            {
+                "cuisine_id": "ASIA.EAST.CHINESE",
+                "cuisine_name_en": "East > Chinese",
+                "language_codes": [
+                    "zh"
+                ]
+            },
+            {
+                "cuisine_id": "ASIA.EAST.CHINESE.CN.GD",
+                "cuisine_name_en": "East > Chinese > China > Cantonese",
+                "language_codes": [
+                    "zh-CN"
+                ]
+            },
+            {
+                "cuisine_id": "ASIA.EAST.CHINESE.CN.SC",
+                "cuisine_name_en": "East > Chinese > China > Sichuan",
+                "language_codes": [
+                    "zh-CN"
+                ]
+            },
+            {
+                "cuisine_id": "ASIA.EAST.CHINESE.CN.SD",
+                "cuisine_name_en": "East > Chinese > China > Shandong",
+                "language_codes": [
+                    "zh-CN"
+                ]
+            },
+            {
+                "cuisine_id": "ASIA.EAST.CHINESE.DIMSUM",
+                "cuisine_name_en": "East > Chinese > Dim Sum",
+                "language_codes": [
+                    "zh-HK"
+                ]
+            },
+            {
+                "cuisine_id": "ASIA.EAST.CHINESE.HOTPOT",
+                "cuisine_name_en": "East > Chinese > Hotpot",
+                "language_codes": [
+                    "zh"
+                ]
+            },
+            {
+                "cuisine_id": "ASIA.EAST.CHINESE.TW",
+                "cuisine_name_en": "East > Chinese > Taiwanese",
+                "language_codes": [
+                    "zh-TW"
+                ]
+            },
+            {
+                "cuisine_id": "ASIA.EAST.DUMPLING",
+                "cuisine_name_en": "East > Dumpling",
+                "language_codes": [
+                    "zh"
+                ]
+            },
+            {
+                "cuisine_id": "ASIA.EAST.JAPANESE.JP",
+                "cuisine_name_en": "East > Japanese",
+                "language_codes": [
+                    "ja"
+                ]
+            },
+            {
+                "cuisine_id": "ASIA.EAST.JAPANESE.RAMEN",
+                "cuisine_name_en": "East > Japanese > Ramen",
+                "language_codes": [
+                    "ja"
+                ]
+            },
+            {
+                "cuisine_id": "ASIA.EAST.JAPANESE.SUSHI",
+                "cuisine_name_en": "East > Japanese > Sushi",
+                "language_codes": [
+                    "ja"
+                ]
+            },
+            {
+                "cuisine_id": "ASIA.EAST.KOREAN",
+                "cuisine_name_en": "East > Korean",
+                "language_codes": [
+                    "ko"
+                ]
+            },
+            {
+                "cuisine_id": "ASIA.HIMALAYAN.NE",
+                "cuisine_name_en": "Himalayan > Nepalese",
+                "language_codes": [
+                    "ne"
+                ]
+            },
+            {
+                "cuisine_id": "ASIA.HIMALAYAN.TIBET",
+                "cuisine_name_en": "Himalayan > Tibetan",
+                "language_codes": [
+                    "bo"
+                ]
+            },
+            {
+                "cuisine_id": "ASIA.PAN",
+                "cuisine_name_en": "Pan-Asian",
+                "language_codes": [
+                    "en"
+                ]
+            },
+            {
+                "cuisine_id": "ASIA.SOUTH",
+                "cuisine_name_en": "South",
+                "language_codes": [
+                    "en"
+                ]
+            },
+            {
+                "cuisine_id": "ASIA.SOUTH.BD",
+                "cuisine_name_en": "South > Bangladeshi",
+                "language_codes": [
+                    "bn"
+                ]
+            },
+            {
+                "cuisine_id": "ASIA.SOUTH.IN",
+                "cuisine_name_en": "South > Indian",
+                "language_codes": [
+                    "hi",
+                    "en"
+                ]
+            },
+            {
+                "cuisine_id": "ASIA.SOUTH.IN.SOUTH",
+                "cuisine_name_en": "South > Indian > South",
+                "language_codes": [
+                    "hi",
+                    "en"
+                ]
+            },
+            {
+                "cuisine_id": "ASIA.SOUTH.LK",
+                "cuisine_name_en": "South > Sri Lankan",
+                "language_codes": [
+                    "si",
+                    "ta"
+                ]
+            },
+            {
+                "cuisine_id": "ASIA.SOUTH.PK",
+                "cuisine_name_en": "South > Pakistani",
+                "language_codes": [
+                    "ur"
+                ]
+            },
+            {
+                "cuisine_id": "ASIA.SOUTHEAST",
+                "cuisine_name_en": "Southeast",
+                "language_codes": [
+                    "en"
+                ]
+            },
+            {
+                "cuisine_id": "ASIA.SOUTHEAST.ID",
+                "cuisine_name_en": "Southeast > Indonesian",
+                "language_codes": [
+                    "id"
+                ]
+            },
+            {
+                "cuisine_id": "ASIA.SOUTHEAST.KH",
+                "cuisine_name_en": "Southeast > Cambodian",
+                "language_codes": [
+                    "km"
+                ]
+            },
+            {
+                "cuisine_id": "ASIA.SOUTHEAST.MM",
+                "cuisine_name_en": "Southeast > Burmese",
+                "language_codes": [
+                    "my"
+                ]
+            },
+            {
+                "cuisine_id": "ASIA.SOUTHEAST.MY",
+                "cuisine_name_en": "Southeast > Malaysian",
+                "language_codes": [
+                    "ms",
+                    "zh"
+                ]
+            },
+            {
+                "cuisine_id": "ASIA.SOUTHEAST.PH",
+                "cuisine_name_en": "Southeast > Filipino",
+                "language_codes": [
+                    "tl",
+                    "en"
+                ]
+            },
+            {
+                "cuisine_id": "ASIA.SOUTHEAST.TH",
+                "cuisine_name_en": "Southeast > Thai",
+                "language_codes": [
+                    "th"
+                ]
+            },
+            {
+                "cuisine_id": "ASIA.SOUTHEAST.VN",
+                "cuisine_name_en": "Southeast > Vietnamese",
+                "language_codes": [
+                    "vi"
+                ]
+            }
         ]
     },
-    "AMERICAS.LATIN.BR": {
-        "category_name": "Americas > Latin > Brazilian",
-        "language_codes": [
-            "pt"
+    {
+        "category_id": "EUROPE",
+        "category_name_en": "European",
+        "children": [
+            {
+                "cuisine_id": "EUROPE.ANGLOCELTIC.GB",
+                "cuisine_name_en": "Anglo-Celtic > British",
+                "language_codes": [
+                    "en"
+                ]
+            },
+            {
+                "cuisine_id": "EUROPE.ANGLOCELTIC.GB.ENG",
+                "cuisine_name_en": "Anglo-Celtic > English",
+                "language_codes": [
+                    "en"
+                ]
+            },
+            {
+                "cuisine_id": "EUROPE.ANGLOCELTIC.GB.SCT",
+                "cuisine_name_en": "Anglo-Celtic > Scottish",
+                "language_codes": [
+                    "en"
+                ]
+            },
+            {
+                "cuisine_id": "EUROPE.ANGLOCELTIC.IE",
+                "cuisine_name_en": "Anglo-Celtic > Irish",
+                "language_codes": [
+                    "en"
+                ]
+            },
+            {
+                "cuisine_id": "EUROPE.CENTRAL.AT",
+                "cuisine_name_en": "Central > Austrian",
+                "language_codes": [
+                    "de"
+                ]
+            },
+            {
+                "cuisine_id": "EUROPE.CENTRAL.CH",
+                "cuisine_name_en": "Central > Swiss",
+                "language_codes": [
+                    "gsw",
+                    "fr",
+                    "it"
+                ]
+            },
+            {
+                "cuisine_id": "EUROPE.CENTRAL.CH.FONDUE",
+                "cuisine_name_en": "Central > Swiss > Fondue",
+                "language_codes": [
+                    "gsw",
+                    "fr"
+                ]
+            },
+            {
+                "cuisine_id": "EUROPE.CENTRAL.CZ",
+                "cuisine_name_en": "Central > Czech",
+                "language_codes": [
+                    "cs"
+                ]
+            },
+            {
+                "cuisine_id": "EUROPE.CENTRAL.DE",
+                "cuisine_name_en": "Central > German",
+                "language_codes": [
+                    "de"
+                ]
+            },
+            {
+                "cuisine_id": "EUROPE.CENTRAL.DE.BY",
+                "cuisine_name_en": "Central > German > Bavarian",
+                "language_codes": [
+                    "de"
+                ]
+            },
+            {
+                "cuisine_id": "EUROPE.CENTRAL.HU",
+                "cuisine_name_en": "Central > Hungarian",
+                "language_codes": [
+                    "hu"
+                ]
+            },
+            {
+                "cuisine_id": "EUROPE.CENTRAL.PL",
+                "cuisine_name_en": "Central > Polish",
+                "language_codes": [
+                    "pl"
+                ]
+            },
+            {
+                "cuisine_id": "EUROPE.CENTRAL.SK",
+                "cuisine_name_en": "Central > Slovak",
+                "language_codes": [
+                    "sk"
+                ]
+            },
+            {
+                "cuisine_id": "EUROPE.EAST",
+                "cuisine_name_en": "Eastern & Caucasian > Eastern European",
+                "language_codes": [
+                    "en"
+                ]
+            },
+            {
+                "cuisine_id": "EUROPE.EAST.CAUCASIAN",
+                "cuisine_name_en": "Eastern & Caucasian > Caucasian",
+                "language_codes": [
+                    "ka"
+                ]
+            },
+            {
+                "cuisine_id": "EUROPE.EAST.RU",
+                "cuisine_name_en": "Eastern & Caucasian > Russian",
+                "language_codes": [
+                    "ru"
+                ]
+            },
+            {
+                "cuisine_id": "EUROPE.EAST.UA",
+                "cuisine_name_en": "Eastern & Caucasian > Ukrainian",
+                "language_codes": [
+                    "uk"
+                ]
+            },
+            {
+                "cuisine_id": "EUROPE.NORDIC.NEW",
+                "cuisine_name_en": "Nordic > New Nordic",
+                "language_codes": [
+                    "da",
+                    "nb",
+                    "sv"
+                ]
+            },
+            {
+                "cuisine_id": "EUROPE.NORDIC.SCANDINAVIAN",
+                "cuisine_name_en": "Nordic > Scandinavian",
+                "language_codes": [
+                    "da",
+                    "fi",
+                    "is",
+                    "nb",
+                    "sv"
+                ]
+            },
+            {
+                "cuisine_id": "EUROPE.SOUTH.ES",
+                "cuisine_name_en": "Southern & Mediterranean > Spanish",
+                "language_codes": [
+                    "es"
+                ]
+            },
+            {
+                "cuisine_id": "EUROPE.SOUTH.GR",
+                "cuisine_name_en": "Southern & Mediterranean > Greek",
+                "language_codes": [
+                    "el"
+                ]
+            },
+            {
+                "cuisine_id": "EUROPE.SOUTH.IT",
+                "cuisine_name_en": "Southern & Mediterranean > Italian",
+                "language_codes": [
+                    "it"
+                ]
+            },
+            {
+                "cuisine_id": "EUROPE.SOUTH.IT.PIZZA",
+                "cuisine_name_en": "Southern & Mediterranean > Italian > Pizza",
+                "language_codes": [
+                    "it",
+                    "en"
+                ]
+            },
+            {
+                "cuisine_id": "EUROPE.SOUTH.MEDITERRANEAN",
+                "cuisine_name_en": "Southern & Mediterranean > Mediterranean",
+                "language_codes": [
+                    "en"
+                ]
+            },
+            {
+                "cuisine_id": "EUROPE.SOUTH.PT",
+                "cuisine_name_en": "Southern & Mediterranean > Portuguese",
+                "language_codes": [
+                    "pt"
+                ]
+            },
+            {
+                "cuisine_id": "EUROPE.WEST.BE",
+                "cuisine_name_en": "Western > Belgian",
+                "language_codes": [
+                    "fr",
+                    "nl"
+                ]
+            },
+            {
+                "cuisine_id": "EUROPE.WEST.FR",
+                "cuisine_name_en": "Western > French",
+                "language_codes": [
+                    "fr"
+                ]
+            },
+            {
+                "cuisine_id": "EUROPE.WEST.NL",
+                "cuisine_name_en": "Western > Dutch",
+                "language_codes": [
+                    "nl"
+                ]
+            }
         ]
     },
-    "AMERICAS.LATIN.MX": {
-        "category_name": "Americas > Latin > Mexican",
-        "language_codes": [
-            "es"
+    {
+        "category_id": "MIDDLEEASTNORTHAFRICA",
+        "category_name_en": "Middle Eastern & North African",
+        "children": [
+            {
+                "cuisine_id": "MIDDLEEASTNORTHAFRICA.IR",
+                "cuisine_name_en": "Middle Eastern > Persian",
+                "language_codes": [
+                    "fa"
+                ]
+            },
+            {
+                "cuisine_id": "MIDDLEEASTNORTHAFRICA.JEWISH",
+                "cuisine_name_en": "Middle Eastern > Jewish",
+                "language_codes": [
+                    "he",
+                    "yi"
+                ]
+            },
+            {
+                "cuisine_id": "MIDDLEEASTNORTHAFRICA.KEBAB",
+                "cuisine_name_en": "Middle Eastern > Falafel",
+                "language_codes": [
+                    "ar",
+                    "he"
+                ]
+            },
+            {
+                "cuisine_id": "MIDDLEEASTNORTHAFRICA.KEBAB",
+                "cuisine_name_en": "Middle Eastern > Kebab",
+                "language_codes": [
+                    "tr"
+                ]
+            },
+            {
+                "cuisine_id": "MIDDLEEASTNORTHAFRICA.LB",
+                "cuisine_name_en": "Middle Eastern > Lebanese",
+                "language_codes": [
+                    "ar"
+                ]
+            },
+            {
+                "cuisine_id": "MIDDLEEASTNORTHAFRICA.MA",
+                "cuisine_name_en": "North African > Moroccan",
+                "language_codes": [
+                    "ar"
+                ]
+            },
+            {
+                "cuisine_id": "MIDDLEEASTNORTHAFRICA.MIDDLEEAST",
+                "cuisine_name_en": "Middle Eastern",
+                "language_codes": [
+                    "ar"
+                ]
+            },
+            {
+                "cuisine_id": "MIDDLEEASTNORTHAFRICA.NORTHAFRICA",
+                "cuisine_name_en": "North African",
+                "language_codes": [
+                    "ar",
+                    "fr"
+                ]
+            },
+            {
+                "cuisine_id": "MIDDLEEASTNORTHAFRICA.TR",
+                "cuisine_name_en": "Middle Eastern > Turkish",
+                "language_codes": [
+                    "tr"
+                ]
+            }
         ]
     },
-    "AMERICAS.LATIN.PE": {
-        "category_name": "Americas > Latin > Peruvian",
-        "language_codes": [
-            "es"
+    {
+        "category_id": "OCEANIAN",
+        "category_name_en": "Oceanian",
+        "children": [
+            {
+                "cuisine_id": "OCEANIAN.AU",
+                "cuisine_name_en": "Australian",
+                "language_codes": [
+                    "en"
+                ]
+            }
         ]
     },
-    "AMERICAS.NORTH.BURGER": {
-        "category_name": "Americas > North > Burger",
-        "language_codes": null
-    },
-    "AMERICAS.NORTH.NEW": {
-        "category_name": "Americas > North > New American",
-        "language_codes": null
-    },
-    "AMERICAS.NORTH.TEXMEX": {
-        "category_name": "Americas > North > Tex-Mex",
-        "language_codes": null
-    },
-    "AMERICAS.NORTH.TEXMEX.BURRITO": {
-        "category_name": "Americas > North > Tex-Mex > Burrito",
-        "language_codes": null
-    },
-    "AMERICAS.NORTH.TEXMEX.TACO": {
-        "category_name": "Americas > North > Tex-Mex > Taco",
-        "language_codes": null
-    },
-    "AMERICAS.NORTH.US": {
-        "category_name": "Americas > North > American",
-        "language_codes": [
-            "en"
+    {
+        "category_id": "OTHER",
+        "category_name_en": "Other",
+        "children": [
+            {
+                "cuisine_id": "OTHER.COFFEE",
+                "cuisine_name_en": "Coffee Shop",
+                "language_codes": [
+                    "en"
+                ]
+            },
+            {
+                "cuisine_id": "OTHER.OTHER",
+                "cuisine_name_en": "Other",
+                "language_codes": [
+                    "en"
+                ]
+            }
         ]
-    },
-    "AMERICAS.NORTH.US.BBQ": {
-        "category_name": "Americas > North > American > BBQ",
-        "language_codes": [
-            "en"
-        ]
-    },
-    "AMERICAS.NORTH.US.CAJUN": {
-        "category_name": "Americas > North > American > Cajun",
-        "language_codes": [
-            "en"
-        ]
-    },
-    "AMERICAS.NORTH.US.HI": {
-        "category_name": "Americas > North > American > Hawaiian",
-        "language_codes": [
-            "en"
-        ]
-    },
-    "AMERICAS.NORTH.US.SOUTH": {
-        "category_name": "Americas > North > American > Southern/Soul Food",
-        "language_codes": [
-            "en"
-        ]
-    },
-    "ASIA.CENTRAL.MN": {
-        "category_name": "Asian > Central > Mongolian",
-        "language_codes": null
-    },
-    "ASIA.EAST.CHINESE": {
-        "category_name": "Asian > East > Chinese",
-        "language_codes": [
-            "zh"
-        ]
-    },
-    "ASIA.EAST.CHINESE.CN.GD": {
-        "category_name": "Asian > East > Chinese > China > Cantonese",
-        "language_codes": [
-            "zh-Hans"
-        ]
-    },
-    "ASIA.EAST.CHINESE.CN.SC": {
-        "category_name": "Asian > East > Chinese > China > Sichuan",
-        "language_codes": [
-            "zh-Hans"
-        ]
-    },
-    "ASIA.EAST.CHINESE.CN.SD": {
-        "category_name": "Asian > East > Chinese > China > Shandong",
-        "language_codes": [
-            "zh-Hans"
-        ]
-    },
-    "ASIA.EAST.CHINESE.DIMSUM": {
-        "category_name": "Asian > East > Chinese > Dim Sum",
-        "language_codes": null
-    },
-    "ASIA.EAST.CHINESE.HOTPOT": {
-        "category_name": "Asian > East > Chinese > Hotpot",
-        "language_codes": null
-    },
-    "ASIA.EAST.CHINESE.TW": {
-        "category_name": "Asian > East > Chinese > Taiwanese",
-        "language_codes": [
-            "zh-Hant"
-        ]
-    },
-    "ASIA.EAST.DUMPLING": {
-        "category_name": "Asian > East > Dumpling",
-        "language_codes": null
-    },
-    "ASIA.EAST.JAPANESE.JP": {
-        "category_name": "Asian > East > Japanese",
-        "language_codes": [
-            "ja"
-        ]
-    },
-    "ASIA.EAST.JAPANESE.RAMEN": {
-        "category_name": "Asian > East > Japanese > Ramen",
-        "language_codes": null
-    },
-    "ASIA.EAST.JAPANESE.SUSHI": {
-        "category_name": "Asian > East > Japanese > Sushi",
-        "language_codes": null
-    },
-    "ASIA.EAST.KOREAN": {
-        "category_name": "Asian > East > Korean",
-        "language_codes": [
-            "ko"
-        ]
-    },
-    "am-ET, en-ET": {
-        "category_name": "Asian > Himalayan > Nepalese",
-        "language_codes": [
-            "ne"
-        ]
-    },
-    "ASIA.HIMALAYAN.TIBET": {
-        "category_name": "Asian > Himalayan > Tibetan",
-        "language_codes": null
-    },
-    "ASIA.PAN": {
-        "category_name": "Asian > Pan-Asian",
-        "language_codes": null
-    },
-    "ASIA.SOUTH": {
-        "category_name": "Asian > South",
-        "language_codes": null
-    },
-    "ASIA.SOUTH.BD": {
-        "category_name": "Asian > South > Bangladeshi",
-        "language_codes": [
-            "bn"
-        ]
-    },
-    "ASIA.SOUTH.IN": {
-        "category_name": "Asian > South > Indian",
-        "language_codes": [
-            "hi",
-            "en"
-        ]
-    },
-    "ASIA.SOUTH.IN.SOUTH": {
-        "category_name": "Asian > South > Indian > South",
-        "language_codes": null
-    },
-    "ASIA.SOUTH.LK": {
-        "category_name": "Asian > South > Sri Lankan",
-        "language_codes": [
-            "si",
-            "ta"
-        ]
-    },
-    "ASIA.SOUTH.PK": {
-        "category_name": "Asian > South > Pakistani",
-        "language_codes": [
-            "ur"
-        ]
-    },
-    "ASIA.SOUTHEAST": {
-        "category_name": "Asian > Southeast",
-        "language_codes": null
-    },
-    "ASIA.SOUTHEAST.ID": {
-        "category_name": "Asian > Southeast > Indonesian",
-        "language_codes": [
-            "id"
-        ]
-    },
-    "ASIA.SOUTHEAST.KH": {
-        "category_name": "Asian > Southeast > Cambodian",
-        "language_codes": [
-            "km"
-        ]
-    },
-    "ASIA.SOUTHEAST.MM": {
-        "category_name": "Asian > Southeast > Burmese",
-        "language_codes": [
-            "my"
-        ]
-    },
-    "ASIA.SOUTHEAST.MY": {
-        "category_name": "Asian > Southeast > Malaysian",
-        "language_codes": [
-            "ms",
-            "zh"
-        ]
-    },
-    "ASIA.SOUTHEAST.PH": {
-        "category_name": "Asian > Southeast > Filipino",
-        "language_codes": [
-            "tl",
-            "en"
-        ]
-    },
-    "ASIA.SOUTHEAST.TH": {
-        "category_name": "Asian > Southeast > Thai",
-        "language_codes": [
-            "th"
-        ]
-    },
-    "ASIA.SOUTHEAST.VN": {
-        "category_name": "Asian > Southeast > Vietnamese",
-        "language_codes": [
-            "vi"
-        ]
-    },
-    "EUROPE.ANGLOCELTIC.GB": {
-        "category_name": "European > Anglo-Celtic > British",
-        "language_codes": [
-            "en"
-        ]
-    },
-    "EUROPE.ANGLOCELTIC.GB.ENG": {
-        "category_name": "European > Anglo-Celtic > English",
-        "language_codes": [
-            "en"
-        ]
-    },
-    "EUROPE.ANGLOCELTIC.GB.SCT": {
-        "category_name": "European > Anglo-Celtic > Scottish",
-        "language_codes": [
-            "en"
-        ]
-    },
-    "EUROPE.ANGLOCELTIC.IE": {
-        "category_name": "European > Anglo-Celtic > Irish",
-        "language_codes": [
-            "en"
-        ]
-    },
-    "EUROPE.CENTRAL.AT": {
-        "category_name": "European > Central > Austrian",
-        "language_codes": [
-            "de"
-        ]
-    },
-    "EUROPE.CENTRAL.CH": {
-        "category_name": "European > Central > Swiss",
-        "language_codes": [
-            "de",
-            "fr",
-            "it"
-        ]
-    },
-    "EUROPE.CENTRAL.CH.FONDUE": {
-        "category_name": "European > Central > Swiss > Fondue",
-        "language_codes": null
-    },
-    "EUROPE.CENTRAL.CZ": {
-        "category_name": "European > Central > Czech",
-        "language_codes": [
-            "cs"
-        ]
-    },
-    "EUROPE.CENTRAL.DE": {
-        "category_name": "European > Central > German",
-        "language_codes": [
-            "de"
-        ]
-    },
-    "EUROPE.CENTRAL.DE.BY": {
-        "category_name": "European > Central > German > Bavarian",
-        "language_codes": [
-            "de"
-        ]
-    },
-    "EUROPE.CENTRAL.HU": {
-        "category_name": "European > Central > Hungarian",
-        "language_codes": [
-            "hu"
-        ]
-    },
-    "EUROPE.CENTRAL.PL": {
-        "category_name": "European > Central > Polish",
-        "language_codes": [
-            "pl"
-        ]
-    },
-    "EUROPE.CENTRAL.SK": {
-        "category_name": "European > Central > Slovak",
-        "language_codes": [
-            "sk"
-        ]
-    },
-    "EUROPE.EAST": {
-        "category_name": "European > Eastern & Caucasian > Eastern European",
-        "language_codes": null
-    },
-    "EUROPE.EAST.CAUCASIAN": {
-        "category_name": "European > Eastern & Caucasian > Caucasian",
-        "language_codes": null
-    },
-    "EUROPE.EAST.RU": {
-        "category_name": "European > Eastern & Caucasian > Russian",
-        "language_codes": [
-            "ru"
-        ]
-    },
-    "EUROPE.EAST.UA": {
-        "category_name": "European > Eastern & Caucasian > Ukrainian",
-        "language_codes": [
-            "uk"
-        ]
-    },
-    "EUROPE.NORDIC.NEW": {
-        "category_name": "European > Nordic > New Nordic",
-        "language_codes": null
-    },
-    "EUROPE.NORDIC.SCANDINAVIAN": {
-        "category_name": "European > Nordic > Scandinavian",
-        "language_codes": null
-    },
-    "EUROPE.SOUTH.ES": {
-        "category_name": "European > Southern & Mediterranean > Spanish",
-        "language_codes": [
-            "es"
-        ]
-    },
-    "EUROPE.SOUTH.GR": {
-        "category_name": "European > Southern & Mediterranean > Greek",
-        "language_codes": [
-            "el"
-        ]
-    },
-    "EUROPE.SOUTH.IT": {
-        "category_name": "European > Southern & Mediterranean > Italian",
-        "language_codes": [
-            "it"
-        ]
-    },
-    "EUROPE.SOUTH.IT.PIZZA": {
-        "category_name": "European > Southern & Mediterranean > Italian > Pizza",
-        "language_codes": null
-    },
-    "EUROPE.SOUTH.MEDITERRANEAN": {
-        "category_name": "European > Southern & Mediterranean > Mediterranean",
-        "language_codes": null
-    },
-    "EUROPE.SOUTH.PT": {
-        "category_name": "European > Southern & Mediterranean > Portuguese",
-        "language_codes": [
-            "pt"
-        ]
-    },
-    "EUROPE.WEST.BE": {
-        "category_name": "European > Western > Belgian",
-        "language_codes": [
-            "fr",
-            "nl"
-        ]
-    },
-    "EUROPE.WEST.FR": {
-        "category_name": "European > Western > French",
-        "language_codes": [
-            "fr"
-        ]
-    },
-    "EUROPE.WEST.NL": {
-        "category_name": "European > Western > Dutch",
-        "language_codes": [
-            "nl"
-        ]
-    },
-    "MIDDLEEASTNORTHAFRICA.IR": {
-        "category_name": "Middle Eastern & North African > Persian",
-        "language_codes": [
-            "fa"
-        ]
-    },
-    "MIDDLEEASTNORTHAFRICA.JEWISH": {
-        "category_name": "Middle Eastern & North African > Jewish",
-        "language_codes": null
-    },
-    "MIDDLEEASTNORTHAFRICA.KEBAB": {
-        "category_name": "Middle Eastern & North African > Kebab",
-        "language_codes": null
-    },
-    "MIDDLEEASTNORTHAFRICA.LB": {
-        "category_name": "Middle Eastern & North African > Lebanese",
-        "language_codes": [
-            "ar"
-        ]
-    },
-    "MIDDLEEASTNORTHAFRICA.MA": {
-        "category_name": "Middle Eastern & North African > Moroccan",
-        "language_codes": [
-            "ar"
-        ]
-    },
-    "MIDDLEEASTNORTHAFRICA.MIDDLEEAST": {
-        "category_name": "Middle Eastern & North African > Middle Eastern",
-        "language_codes": null
-    },
-    "MIDDLEEASTNORTHAFRICA.NORTHAFRICA": {
-        "category_name": "Middle Eastern & North African > North African",
-        "language_codes": null
-    },
-    "MIDDLEEASTNORTHAFRICA.TR": {
-        "category_name": "Middle Eastern & North African > Turkish",
-        "language_codes": [
-            "tr"
-        ]
-    },
-    "OCEANIAN.AU": {
-        "category_name": "Oceanian > Australian",
-        "language_codes": [
-            "en"
-        ]
-    },
-    "OTHER": {
-        "category_name": "Other",
-        "language_codes": null
-    },
-    "OTHER.COFFEE": {
-        "category_name": "Other > Coffee Shop",
-        "language_codes": null
     }
-};
+];

@@ -67,28 +67,32 @@ function initializeCuisineSelectOptions() {
     const option = document.createElement('option');
     cuisineSelectElement.add(option);
 
-    // Iterate over the dictionary keys
-    for (const key in cuisinesData) {
-        if (cuisinesData.hasOwnProperty(key)) {
-            const option = document.createElement('option');
-            option.value = key;
-            option.text = cuisinesData[key].category_name;
-            cuisineSelectElement.add(option);
-        }
-    }
+    // Populate the select element using forEach and map
+    cuisinesData.forEach(function (category) {
+        const optgroup = document.createElement('optgroup');
+        optgroup.label = category.category_name_en;
+
+        category.children.map(function (cuisine) {
+            const option = new Option(cuisine.cuisine_name_en, cuisine.cuisine_id);
+            optgroup.appendChild(option);
+        });
+
+        cuisineSelectElement.appendChild(optgroup);
+    });
 }
 
 function updateLanguageSelectElement() {
     const cuisineSelectElement = document.getElementById('cuisine');
     const languagesSelectElement = document.getElementById('languages');
 
-    let languageCodes = [];
+    let specifiedLanguageCodes = [];
 
     // First add the language(s) from the selected cuisine
     const selectedCuisineId = cuisineSelectElement.value;
-    if (selectedCuisineId && cuisinesData[selectedCuisineId].language_codes) {
-        for (const c of cuisinesData[selectedCuisineId].language_codes) {
-            languageCodes.push(c);
+    if (selectedCuisineId) {
+        const cuisine = cuisinesData.flatMap(category => category.children).find(cuisine => cuisine.cuisine_id === selectedCuisineId);
+        for (const c of cuisine.language_codes) {
+            specifiedLanguageCodes.push(c);
         }
     }
 
@@ -104,8 +108,8 @@ function updateLanguageSelectElement() {
                 console.log('Country Code (from selected place):', countryCode);
 
                 for (const c of countryToLanguagesData[countryCode]) {
-                    if (!languageCodes.includes(c)) {
-                        languageCodes.push(c);
+                    if (!specifiedLanguageCodes.includes(c)) {
+                        specifiedLanguageCodes.push(c);
                     }
                 }
             } else {
@@ -114,19 +118,39 @@ function updateLanguageSelectElement() {
         }
     }
 
-    // Clear the current list of languages
+    // Get display names for language codes
+    const allLanguageCodes = [...new Set(Object.values(countryToLanguagesData).flat())];
+    const cleanedLanguageCodes = allLanguageCodes.map(code => code.split('_')[0]);
+    const languageDicts = cleanedLanguageCodes
+        // Filter out unsupported languages (with no display names)
+        .filter(code => {
+            const languageName = new Intl.DisplayNames([navigator.language], { type: 'language' });
+            const displayName = languageName.of(code);
+            return displayName !== code;
+        })
+        .map(code => {
+            const languageName = new Intl.DisplayNames([navigator.language], { type: 'language' });
+            const displayName = languageName.of(code);
+            return { code, displayName };
+        });
+
+    // Sort language codes by display name
+    languageDicts.sort((a, b) => a.displayName.localeCompare(b.displayName));
+
+    // Move specified language codes to the front
+    const reorderedLanguageCodes = specifiedLanguageCodes.concat(languageDicts.map(obj => obj.code).filter(code => !specifiedLanguageCodes.includes(code)));
+
+    // Clear the select element
     languagesSelectElement.innerHTML = '';
 
-    const displayNames = new Intl.DisplayNames(['en'], { type: 'language' });
-
-    for (const languageCode of languageCodes) {
-        const displayName = displayNames.of(languageCode);
-
-        const option = document.createElement('option');
-        option.value = languageCode;
+    // Populate select element
+    reorderedLanguageCodes.forEach(code => {
+        const option = document.createElement("option");
+        const displayName = languageDicts.find(obj => obj.code === code).displayName;
         option.text = displayName;
-        languagesSelectElement.add(option);
-    }
+        option.value = code;
+        languagesSelectElement.appendChild(option);
+    });
 }
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -143,7 +167,7 @@ function slugify(str, maxLength) {
         .replace(/\s+/g, '-') // Replace spaces with hyphens
         .trim(); // Trim leading/trailing spaces
 
-    if (slug.length > maxLength) {
+    if (maxLength && slug.length > maxLength) {
         slug = slug.substring(0, maxLength); // Truncate the slug to the specified maximum length
     }
 
@@ -193,11 +217,22 @@ document.getElementById('upload-form').addEventListener('submit', async (event) 
 
         // Upload file to S3
         const file = formData.get('photo');
-        const place = document.getElementById('place-input').value;
-        print(place);
-        const placeName = place.name;
-        print(placeName);
-        const fileName = `${uuidv4()}_${slugify(placeName, 24)}`;
+        const place = autocomplete.getPlace();
+
+        const uuid = uuidv4();
+        const uuidNoHyphens = uuid.replace(/-/g, '');
+
+        let placeCountryCode = '??';
+        if (place.address_components) {
+            const countryComponent = place.address_components.find(component =>
+                component.types.includes('country')
+            );
+            if (countryComponent) {
+                placeCountryCode = countryComponent.short_name;
+            }
+        }
+        const fileName = `${uuidNoHyphens}_${placeCountryCode}_${slugify(place.name, 24)}`;
+        console.log(fileName);
 
         const s3Params = {
             Bucket: 'us.jrcpl.foodtbd.uploadmenu',

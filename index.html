@@ -22,19 +22,21 @@
 
         <form id="upload-form" enctype="multipart/form-data">
             <div class="mb-3">
-                <label for="photo" class="form-label">Menu Photo *</label>
+                <label for="name" class="form-label">Restaurant *</label>
+                <input type="text" class="form-control form-control-lg" id="place-input"
+                    placeholder="Enter a restaurant name" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="photo" class="form-label">Menu Photo (one page a time) *</label>
                 <input type="file" class="form-control form-control-lg" id="photo" name="photo" accept="image/*"
                     capture="camera" required>
             </div>
 
             <div class="mb-3">
-                <label for="name" class="form-label">Restaurant *</label>
-                <input type="text" class="form-control form-control-lg" id="place-input" placeholder="Type a name">
-            </div>
-
-            <div class="mb-3">
                 <label for="cuisine" class="form-label">Cuisine *</label>
-                <select class="form-control form-control-lg" id="cuisine" onchange="updateLanguageSelectElement()">
+                <select class="form-control form-control-lg" id="cuisine" onchange="updateLanguageSelectElement()"
+                    required>
                     <option></option>
                 </select>
                 </select>
@@ -42,7 +44,7 @@
 
             <div class="mb-3">
                 <label for="languages" class="form-label">Menu Language(s) *</label>
-                <select class="form-control form-control-lg" id="languages" name="languages" multiple>
+                <select class="form-control form-control-lg" id="languages" name="languages" multiple required>
                 </select>
             </div>
 
