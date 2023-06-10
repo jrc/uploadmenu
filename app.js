@@ -145,14 +145,34 @@ function formDataToDict(formData) {
     return dict;
 }
 
+function showButtonSpinner() {
+    const submitButton = document.getElementById('submit-button');
+    const buttonSpinner = document.getElementById('button-spinner');
+    const buttonText = document.getElementById('button-text');
+
+    submitButton.disabled = true;
+    buttonSpinner.classList.remove('d-none');
+    buttonText.textContent = 'Uploading…';
+}
+
+function hideButtonSpinner() {
+    const submitButton = document.getElementById('submit-button');
+    const buttonSpinner = document.getElementById('button-spinner');
+    const buttonText = document.getElementById('button-text');
+
+    submitButton.disabled = false;
+    buttonSpinner.classList.add('d-none');
+    buttonText.textContent = 'Submit';
+}
+
 document.getElementById('upload-form').addEventListener('submit', async (event) => {
     event.preventDefault(); // Prevent the form from submitting normally
 
+    // Show the spinner
+    showButtonSpinner();
+
     const formElement = event.target;
     const formData = new FormData(formElement);
-
-    const selectedOptions = Array.from(formData.getAll('languages'));
-    console.log(selectedOptions);
 
     // Retrieve the selected place from the auto-complete field
     // const place = document.getElementById('place-input').value;
@@ -162,8 +182,10 @@ document.getElementById('upload-form').addEventListener('submit', async (event) 
         // Extract form fields
         const data = {};
         for (const [name] of formData.entries()) {
-            if (name !== 'photo') {
+            if (name === 'languages') {
                 data[name] = formData.getAll(name);
+            } else if (name !== 'photo') {
+                data[name] = value;
             }
         }
         console.log('Form Data:', data);
@@ -192,8 +214,14 @@ document.getElementById('upload-form').addEventListener('submit', async (event) 
         // Create an instance of the DynamoDB service
         const dynamoDB = new AWS.DynamoDB.DocumentClient();
         await dynamoDB.put(dynamoDBParams).promise();
+
+        // Hide the spinner
+        hideButtonSpinner()
     } catch (error) {
         console.error(error);
+
+        // Hide the spinner in case of error
+        hideButtonSpinner()
 
         // Handle error
         alert(error);
