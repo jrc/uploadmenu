@@ -190,7 +190,7 @@ document.getElementById('upload-form').addEventListener('submit', async (event) 
             },
         };
         // Create an instance of the DynamoDB service
-        const dynamoDB = new AWS.DynamoDB();
+        const dynamoDB = new AWS.DynamoDB.DocumentClient();
         await dynamoDB.put(dynamoDBParams).promise();
     } catch (error) {
         console.error(error);
