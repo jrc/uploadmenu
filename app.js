@@ -1,3 +1,36 @@
+// Configure the SDK with your AWS credentials
+AWS.config.update({
+    accessKeyId: 'AKIA4A4KQJ74GPF37HBZ',
+    secretAccessKey: 'qw3nX2s/pVkqKESntdt8KvEwSR4yvzhWMP6Yp8/Y',
+    region: 'us-east-1'
+});
+
+// Create an instance of the S3 service
+const s3 = new AWS.S3();
+
+// Function to upload a file to S3
+function uploadFileToS3(file, bucketName, key) {
+    // Read the file contents
+    const fileContent = file;
+
+    // Set the parameters for S3 upload
+    const params = {
+        Bucket: bucketName,
+        Key: key,
+        Body: fileContent
+    };
+
+    // Upload the file to S3
+    s3.upload(params, function (err, data) {
+        if (err) {
+            console.error("Error uploading file:", err);
+        } else {
+            console.log("File uploaded successfully.", data.Location);
+        }
+    });
+}
+
+
 let autocomplete = null;
 
 
@@ -27,19 +60,6 @@ function initializePlaceAutocompleteInputElement() {
 
         autocomplete.addListener('place_changed', function () {
             updateLanguageSelectElement();
-            // if (place && place.address_components) {
-            //     const countryComponent = place.address_components.find(component =>
-            //         component.types.includes('country')
-            //     );
-            //     if (countryComponent) {
-            //         const countryCode = countryComponent.short_name;
-            //         console.log('Country Code (from selected place):', countryCode);
-            //         updateLanguageSelectElement(countryCode);
-
-            //     } else {
-            //         console.error('Country not found for the selected place.');
-            //     }
-            // }
         });
 
         // Get the user's location using Geolocation API
@@ -140,36 +160,81 @@ document.addEventListener('DOMContentLoaded', function () {
     updateLanguageSelectElement();
 });
 
-document.getElementById('upload-form').addEventListener('submit', function (event) {
+
+function formDataToDict(formData) {
+    const dict = {};
+    for (let entry of formData.entries()) {
+        const [key, value] = entry;
+        dict[key] = value;
+    }
+    return dict;
+}
+
+document.getElementById('upload-form').addEventListener('submit', async (event) => {
     event.preventDefault(); // Prevent the form from submitting normally
 
-    const form = event.target;
-    const formData = new FormData(form);
+    const formElement = event.target;
+    const formData = new FormData(formElement);
+
+    const selectedOptions = Array.from(formData.getAll('languages'));
+    console.log(selectedOptions);
 
     // Retrieve the selected place from the auto-complete field
-    const place = document.getElementById('place-input').value;
-    formData.append('place', place); // Append the selected place to the form data
+    // const place = document.getElementById('place-input').value;
+    // formData.append('place', place); // Append the selected place to the form data
 
-    const selectedLanguages = Array.from(document.getElementById('language').selectedOptions).map(option => option.value);
-    formData.append('languages', selectedLanguages.join(',')); // Append selected languages to the form data
-
-    fetch('/upload', {
-        method: 'POST',
-        body: formData
-    })
-        .then(function (response) {
-            if (response.ok) {
-                return response.text();
+    try {
+        // Extract form fields
+        const data = {};
+        for (const [name] of formData.entries()) {
+            if (name !== 'file') {
+                data[name] = formData.getAll(name);
             }
-            throw new Error('Error: ' + response.status);
-        })
-        .then(function (responseText) {
-            console.log('Response:', responseText);
-            alert('Upload successful!');
-            form.reset();
-        })
-        .catch(function (error) {
-            console.error('Error:', error);
-            alert('Upload failed!');
-        });
+        }
+        console.log('Form Data:', data);
+
+        // Upload file to S3
+        const file = formData.get('photo');
+        const fileName = `${uuidv4()}_${file.name}`;
+        const s3Params = {
+            Bucket: 'us.jrcpl.foodtbd.uploadmenu',
+            Key: fileName,
+            Body: file,
+        };
+        await s3.upload(s3Params).promise();
+
+        // Store data in DynamoDB
+        const dynamoDBParams = {
+            TableName: 'us.jrcpl.foodtbd.uploadmenu',
+            Item: {
+                id: uuidv4(),
+                ...data,
+            },
+        };
+        await dynamoDB.put(dynamoDBParams).promise();
+    } catch (error) {
+        // Handle error
+        alert(error);
+        return; // Abort further execution
+    }
+
+    // fetch('/upload', {
+    //     method: 'POST',
+    //     body: formData
+    // })
+    //     .then(function (response) {
+    //         if (response.ok) {
+    //             return response.text();
+    //         }
+    //         throw new Error('Error: ' + response.status);
+    //     })
+    //     .then(function (responseText) {
+    //         console.log('Response:', responseText);
+    //         alert('Upload successful!');
+    //         form.reset();
+    //     })
+    //     .catch(function (error) {
+    //         console.error('Error:', error);
+    //         alert('Upload failed!');
+    //     });
 });
