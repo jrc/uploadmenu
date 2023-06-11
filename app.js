@@ -17,23 +17,23 @@ function slugify(str, maxLength) {
     return slug;
 }
 
-function getAllLanguageDicts() {
-    // Extract all language codes from countryToLanguagesData (in data.js),
-    // ignoring any optional script codes
-    const allLanguageCodes = [...new Set(Object.values(countryToLanguagesData)
-        .flat()
-        .map(language => language.split('_')[0]))];
+// function getAllLanguageDicts() {
+//     // Extract all language codes from countryToLanguagesData (in data.js),
+//     // ignoring any optional script codes
+//     const allLanguageCodes = [...new Set(Object.values(countryToLanguagesData)
+//         .flat()
+//         .map(language => language.split('_')[0]))];
 
-    const intlDisplayNames = new Intl.DisplayNames([navigator.language], { type: 'language' });
+//     const intlDisplayNames = new Intl.DisplayNames([navigator.language], { type: 'language' });
 
-    return allLanguageCodes.reduce((dicts, code) => {
-        const displayName = intlDisplayNames.of(code);
-        if (displayName === code) return dicts; // Skip unsupported languages
+//     return allLanguageCodes.reduce((dicts, code) => {
+//         const displayName = intlDisplayNames.of(code);
+//         if (displayName === code) return dicts; // Skip unsupported languages
 
-        dicts.push({ code, displayName });
-        return dicts;
-    }, []);
-}
+//         dicts.push({ code, displayName });
+//         return dicts;
+//     }, []);
+// }
 
 function getCountryCodeFromGooglePlace(place) {
     return place?.address_components
@@ -85,27 +85,6 @@ function initializePlaceAutocompleteInputElement() {
     document.body.appendChild(script);
 }
 
-function initializeCuisineSelectOptions() {
-    const cuisineSelectElement = document.getElementById('cuisine');
-    cuisineSelectElement.innerHTML = '';
-
-    // Start with an empty option for the "no selection" case
-    const dummyOption = new Option();
-    cuisineSelectElement.appendChild(dummyOption);
-
-    for (const category of cuisinesData) {
-        const optgroup = document.createElement('optgroup');
-        optgroup.label = category.category_name_en;
-
-        for (const cuisine of category.children) {
-            const option = new Option(cuisine.cuisine_name_en, cuisine.cuisine_id);
-            optgroup.appendChild(option);
-        }
-
-        cuisineSelectElement.appendChild(optgroup);
-    }
-}
-
 function initializeAutocomplete() {
     const placeInput = document.getElementById('place-input');
     const options = {
@@ -136,7 +115,29 @@ function initializeAutocomplete() {
     }
 }
 
-// Fill out language HTML multi-select element options
+// Fill out options for the cuisine HTML select element
+function initializeCuisineSelectOptions() {
+    const cuisineSelectElement = document.getElementById('cuisine');
+    cuisineSelectElement.innerHTML = '';
+
+    // Start with an empty option for the "no selection" case
+    const dummyOption = new Option();
+    cuisineSelectElement.appendChild(dummyOption);
+
+    for (const category of cuisinesData) {
+        const optgroup = document.createElement('optgroup');
+        optgroup.label = category.category_name_en;
+
+        for (const cuisine of category.children) {
+            const option = new Option(cuisine.cuisine_name_en, cuisine.cuisine_id);
+            optgroup.appendChild(option);
+        }
+
+        cuisineSelectElement.appendChild(optgroup);
+    }
+}
+
+// Fill out options for the language HTML multi-select element
 function updateLanguageSelectElement() {
     const cuisineSelectElement = document.getElementById('cuisine');
 
@@ -149,10 +150,15 @@ function updateLanguageSelectElement() {
             .flatMap(category => category.children)
             .find(cuisine => cuisine.cuisine_id === selectedCuisineId);
 
-        cuisine.language_codes.forEach(languageCode => {
-            const c = languageCode.match(/[a-zA-Z]+/)[0];
-            suggestedLanguageCodes.push(c);
-        });
+        if (cuisine && cuisine.language_codes && cuisine.language_codes.length > 0) {
+            cuisine.language_codes.forEach(languageCode => {
+                const match = languageCode.match(/[a-zA-Z]+/);
+                if (match) {
+                    const c = match[0];
+                    suggestedLanguageCodes.push(c);
+                }
+            });
+        }
     }
 
     // Then suggest languages of the place's country
@@ -171,14 +177,14 @@ function updateLanguageSelectElement() {
         }
     }
 
-    // Sort all languages by display name
-    const languageDicts = getAllLanguageDicts();
-    languageDicts.sort((a, b) => a.displayName.localeCompare(b.displayName));
+    // Sort the language codes based on their display names
+    const sortedAllLanguageCodes = Object.keys(languageDisplayNameData).sort((a, b) => {
+        return languageDisplayNameData[a].localeCompare(languageDisplayNameData[b]);
+    });
 
-    // Move the suggested languages to the top of the list
+    // Move suggested language codes to the beginning of the list while maintaining order
     const orderedLanguageCodes = suggestedLanguageCodes.concat(
-        languageDicts.filter(x => !suggestedLanguageCodes.includes(x.code))
-            .map(x => x.code)
+        sortedAllLanguageCodes.filter(code => !suggestedLanguageCodes.includes(code))
     );
 
     const languagesSelectElement = document.getElementById('languages');
@@ -186,8 +192,7 @@ function updateLanguageSelectElement() {
 
     orderedLanguageCodes.forEach(code => {
         const option = document.createElement("option");
-        const displayName = languageDicts.find(x => x.code === code).displayName;
-        option.text = displayName;
+        option.text = languageDisplayNameData[code];
         option.value = code;
         languagesSelectElement.appendChild(option);
     });

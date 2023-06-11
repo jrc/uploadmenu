@@ -1,0 +1,1030 @@
+category_id	category_name_en	cuisine_short_id	cuisine_name_en	language_codes
+AFRI	African (Sub-Saharan)	ET	Ethiopian	am, en
+AFRI	African (Sub-Saharan)	OTHER-EAST	Other (East African)	sw, en, fr
+AFRI	African (Sub-Saharan)	OTHER-SOUTH	Other (Southern African)	en, af, zu, ss
+AFRI	African (Sub-Saharan)	OTHER-WEST	Other (West African)	en, fr, ha, yo, ig, ff, bm, kri
+AFRI	African (Sub-Saharan)	PAN	Pan-African	en
+AMER.CARIBBEAN	Americas > Caribbean	CU	Cuban	es
+AMER.CARIBBEAN	Americas > Caribbean	JM	Jamaican	en
+AMER.CARIBBEAN	Americas > Caribbean	OTHER	Other (Caribbean)	en, es, nl, fr
+AMER.LATIN	Americas > Latin America	AR	Argentinian	es
+AMER.LATIN	Americas > Latin American	BR	Brazilian	pt
+AMER.LATIN	Americas > Latin American	CO	Colombian	es
+AMER.LATIN	Americas > Latin American	MX	Mexican	es
+AMER.LATIN	Americas > Latin American	OTHER-CENTRAL	Other (Central American)	es, en
+AMER.LATIN	Americas > Latin American	OTHER-SOUTH	Other (South American)	es, pt
+AMER.LATIN	Americas > Latin American	PAN	Pan-Latin American	es, pt, en
+AMER.LATIN	Americas > Latin American	PE	Peruvian	es
+AMER.LATIN	Americas > Latin American	SV	Salvadoran	es
+AMER.LATIN	Americas > Latin American	VE	Venezuelan	es
+AMER.NORTH	Americas > North American	BURGER	Burger	en
+AMER.NORTH	Americas > North American	CA	Canadian	en, fr
+AMER.NORTH	Americas > North American	DINER	Diner	en
+AMER.NORTH	Americas > North American	US-CA	USA > Californian	en
+AMER.NORTH	Americas > North American	US.NEWENGLAND	USA > New England	en
+AMER.NORTH	Americas > North American	US.OTHER	USA > Other (American)	en
+AMER.NORTH	Americas > North American	US.SOUTH.BBQ	USA > Southern > Barbecue	en
+AMER.NORTH	Americas > North American	US.SOUTH.CAJUN	USA > Southern > Cajun	en
+AMER.NORTH	Americas > North American	US.SOUTH.SOUL	USA > Southern > Soul Food	en
+AMER.NORTH	Americas > North American	US.SOUTHWEST	USA > Southwestern	en, es
+AMER.NORTH	Americas > North American	US.SOUTHWEST.TEXMEX	USA > Southwestern > Tex-Mex	en, es
+ASIA.EAST	Asia > East	CHINESE	Chinese	zh
+ASIA.EAST	Asia > East	CN-GD	Chinese > China > Cantonese	zh-Hans
+ASIA.EAST	Asia > East	CN-SD	Chinese > China > Shandong	zh-Hans
+ASIA.EAST	Asia > East	CN-SH	Chinese > China > Shanghai	zh-Hans
+ASIA.EAST	Asia > East	CN-SC	Chinese > China > Sichuan	zh-Hans
+ASIA.EAST	Asia > East	DIMSUM	Chinese > Dim Sum	zh-Hant, zh-Hans
+ASIA.EAST	Asia > East	HOTPOT	Chinese > Hotpot	zh
+ASIA.EAST	Asia > East	TW	Chinese > Taiwanese	zh-Hant
+ASIA.EAST	Asia > East	JP	Japanese	ja
+ASIA.EAST	Asia > East	JP.IZAKAYA	Japanese > Izakaya	ja
+ASIA.EAST	Asia > East	JP.RAMEN	Japanese > Ramen	ja
+ASIA.EAST	Asia > East	JP.SUSHI	Japanese > Sushi	ja
+ASIA.EAST	Asia > East	JP.TEPPANYAKI	Japanese > Teppanyaki	ja
+ASIA.EAST	Asia > East	KOREAN	Korean	ko
+ASIA.EAST	Asia > East	KOREAN.BBQ	Korean > BBQ	ko
+ASIA	Asia > Other	MN	Central > Mongolian	mn
+ASIA	Asia > Other	CENTRAL.OTHER	Central > Other (Central Asian)	kk, ky, tg, tk, uz
+ASIA	Asia > Other	PAN	Pan-Asian	
+ASIA	Asia > Other	AF	South-Central > Afghan	ps, fa-AF, en
+ASIA	Asia > Other	NP	South-Central > Nepalese	ne, en, new
+ASIA.SOUTH	Asia > South	BD	Bangladeshi	bn
+ASIA.SOUTH	Asia > South	IN	Indian	hi, en
+ASIA.SOUTH	Asia > South	IN.SOUTH	Indian > South	ta, te, kn, ml, en
+ASIA.SOUTH	Asia > South	PK	Pakistani	ur
+ASIA.SOUTH	Asia > South	PAN-INDIAN	Pan-Indian	en
+ASIA.SOUTH	Asia > South	LK	Sri Lankan	si, ta
+ASIA.SOUTHEAST	Asia > Southeast	MM	Burmese	my
+ASIA.SOUTHEAST	Asia > Southeast	KH	Cambodian	km
+ASIA.SOUTHEAST	Asia > Southeast	PH	Filipino	tl, en
+ASIA.SOUTHEAST	Asia > Southeast	ID	Indonesian	id
+ASIA.SOUTHEAST	Asia > Southeast	OTHER	Other (Southeast Asian)	
+ASIA.SOUTHEAST	Asia > Southeast	MY	Malaysian	ms, zh
+ASIA.SOUTHEAST	Asia > Southeast	PAN	Pan-Southeast Asian	ms, km, id, lo, ms, my, en, th, pt, vi
+ASIA.SOUTHEAST	Asia > Southeast	SG	Singaporean	en, zh, ms, ta
+ASIA.SOUTHEAST	Asia > Southeast	TH	Thai	th
+ASIA.SOUTHEAST	Asia > Southeast	VN	Vietnamese	vi
+EURO.IONA	Europe > British & Irish	GB	British	en
+EURO.IONA	Europe > British & Irish	IE	Irish	en
+EURO.CENTRALWEST	Europe > Central & West	AT	Austrian	de
+EURO.CENTRALWEST	Europe > Central & West	BE	Belgian	nl, fr, de, en
+EURO.CENTRALWEST	Europe > Central & West	CZ	Czech	cs
+EURO.CENTRALWEST	Europe > Central & West	NL	Dutch	nl
+EURO.CENTRALWEST	Europe > Central & West	FR	French	fr
+EURO.CENTRALWEST	Europe > Central & West	DE	German	de
+EURO.CENTRALWEST	Europe > Central & West	HU	Hungarian	hu
+EURO.CENTRALWEST	Europe > Central & West	PL	Polish	pl
+EURO.CENTRALWEST	Europe > Central & West	SK	Slovak	sk
+EURO.CENTRALWEST	Europe > Central & West	CH	Swiss	gsw, fr, it
+EURO.EAST	Europe > Eastern	OTHER-CAUCASIAN	Other (Caucasian)	hy, az, ka
+EURO.EAST	Europe > Eastern	OTHER	Other (Eastern European)	et, lv, lt, be, bg, ro, ru, uk
+EURO.EAST	Europe > Eastern	RU	Russian	ru
+EURO.EAST	Europe > Eastern	UA	Ukrainian	uk
+EURO.NORDIC	Europe > Nordic	DK	Danish	da
+EURO.NORDIC	Europe > Nordic	NEW	New Nordic	da, fi, is, nb, sv
+EURO.NORDIC	Europe > Nordic	NO	Norwegian	nb
+EURO.NORDIC	Europe > Nordic	OTHER	Other (Nordic)	
+EURO.NORDIC	Europe > Nordic	PAN-SCANDINAVIAN	Pan-Scandinavian	da, nb, sv
+EURO.NORDIC	Europe > Nordic	SE	Swedish	sv
+EURO.SOUTHMEDITERRANEAN	Europe > Southern & Mediterranean	GR	Greek	el
+EURO.SOUTHMEDITERRANEAN	Europe > Southern & Mediterranean	IT	Italian	it
+EURO.SOUTHMEDITERRANEAN	Europe > Southern & Mediterranean	OTHER-BALKAN	Other (Balkan)	sq, sr, hr, bs, bg, ro, el, tr, mk
+EURO.SOUTHMEDITERRANEAN	Europe > Southern & Mediterranean	PAN-MEDITERRANEAN	Pan-Mediterranean	ar, el, en, es, fr, he, hr, it, mk, pt, sl, tr
+EURO.SOUTHMEDITERRANEAN	Europe > Southern & Mediterranean	IT.PIZZA	Pizza	it, en
+EURO.SOUTHMEDITERRANEAN	Europe > Southern & Mediterranean	PT	Portuguese	pt
+EURO.SOUTHMEDITERRANEAN	Europe > Southern & Mediterranean	ES	Spanish	es
+EURO.SOUTHMEDITERRANEAN	Europe > Southern & Mediterranean	ES.TAPAS	Tapas	es
+MENA	Middle Eastern & North African	IL	Israeli	he, en, ar
+MENA	Middle Eastern & North African	KEBAB	Kebab	tr
+MENA	Middle Eastern & North African	LB	Lebanese	ar
+MENA	Middle Eastern & North African	MA	Moroccan	ar
+MENA	Middle Eastern & North African	OTHER-MIDDLEEAST	Other (Middle Eastern)	ar, fa, he
+MENA	Middle Eastern & North African	OTHER-NORTHAFRICA	Other (North African)	ar, fr
+MENA	Middle Eastern & North African	PAN-MIDDLEEAST	Pan-Middle Eastern	ar, fa, he
+MENA	Middle Eastern & North African	IR	Persian	fa
+MENA	Middle Eastern & North African	TR	Turkish	tr
+OCEA	Oceanian	AUNZ	Australian & New Zealand	en
+OCEA	Oceanian	HI.POKE	Hawaiian > Poke	en, haw
+OCEA	Oceanian	OTHER-PACIFICISLAND	Other (Pacific Island)	en
+OTHER	Other	OTHER	Other	en
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				

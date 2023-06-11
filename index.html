@@ -15,20 +15,18 @@
 </head>
 
 <body>
-    <div class="container">
+    <div class="container pt-2">
         <h1>Menu Uploader</h1>
 
-        <p><small>* All fields are required.</small></p>
-
-        <form id="upload-form" enctype="multipart/form-data">
+        <form id="upload-form" enctype="multipart/form-data" class="mt-4">
             <div class="mb-3">
-                <label for="name" class="form-label">Restaurant *</label>
+                <label for="name" class="form-label">1. Choose the restaurant.</label>
                 <input type="text" class="form-control form-control-lg" id="place-input"
                     placeholder="Enter a restaurant name" required>
             </div>
 
             <div class="mb-3">
-                <label for="photo" class="form-label">Menu Photo (one page a time) *</label>
+                <label for="photo" class="form-label">2. Take a photo of the menu, one page a time.</label>
                 <input type="file" class="form-control form-control-lg" id="photo" name="photo" accept="image/*"
                     capture="environment" required>
                 <!-- https://web.dev/media-capturing-images/
@@ -41,7 +39,7 @@
             </div>
 
             <div class="mb-3">
-                <label for="cuisine" class="form-label">Cuisine *</label>
+                <label for="cuisine" class="form-label">3. Choose the restaurant’s cuisine.</label>
                 <select class="form-control form-control-lg" id="cuisine" name="cuisine"
                     onchange="updateLanguageSelectElement()" required>
                 </select>
@@ -49,12 +47,15 @@
             </div>
 
             <div class="mb-3">
-                <label for="languages" class="form-label">Menu Language(s) *</label>
+                <label for="languages" class="form-label">4. Choose the language(s) that the restaurant menu appears
+                    in.</label>
                 <select class="form-control form-control-lg" id="languages" name="languages" multiple required>
                 </select>
             </div>
 
-            <button type="submit" id="submit-button" class="btn btn-primary btn-lg mt-4">
+            <p><small>* All fields are required.</small></p>
+
+            <button type="submit" id="submit-button" class="btn btn-primary btn-lg">
                 <span id="button-spinner" class="spinner-border spinner-border-sm me-2 d-none" role="status"
                     aria-hidden="true"></span>
                 <span id="button-text">Submit</span>
@@ -66,7 +67,7 @@
                 </div>
             </div>
 
-            <p class="text-muted small mt-2">
+            <p class="text-muted mt-2" style="font-size: smaller;">
                 By submitting a photo, you grant us full rights to use it. Please refer to our <a href="tos.html"
                     class="color-inherit">terms of service</a>.
             </p>
