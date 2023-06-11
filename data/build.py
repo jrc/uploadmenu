@@ -130,6 +130,18 @@ cuisine_language_display_name_dict = {
     for language_code in cuisine_language_code_set
 }
 
+# Special case for Chinese
+cuisine_language_display_name_dict["zh"] = "Chinese (unknown)"
+cuisine_language_display_name_dict["zh-Hans"] = "Chinese (Simplified)"
+cuisine_language_display_name_dict["zh-Hant"] = "Chinese (Traditional)"
+
+# Sort it by key for prettiness
+cuisine_language_display_name_dict = dict(
+    sorted(cuisine_language_display_name_dict.items())
+)
+
+# -----
+
 # Template string
 template = """const countryToLanguagesData = {{ country_to_languages_data }};
 

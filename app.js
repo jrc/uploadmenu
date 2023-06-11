@@ -17,24 +17,6 @@ function slugify(str, maxLength) {
     return slug;
 }
 
-// function getAllLanguageDicts() {
-//     // Extract all language codes from countryToLanguagesData (in data.js),
-//     // ignoring any optional script codes
-//     const allLanguageCodes = [...new Set(Object.values(countryToLanguagesData)
-//         .flat()
-//         .map(language => language.split('_')[0]))];
-
-//     const intlDisplayNames = new Intl.DisplayNames([navigator.language], { type: 'language' });
-
-//     return allLanguageCodes.reduce((dicts, code) => {
-//         const displayName = intlDisplayNames.of(code);
-//         if (displayName === code) return dicts; // Skip unsupported languages
-
-//         dicts.push({ code, displayName });
-//         return dicts;
-//     }, []);
-// }
-
 function getCountryCodeFromGooglePlace(place) {
     return place?.address_components
         ?.find(component => component.types.includes('country'))
