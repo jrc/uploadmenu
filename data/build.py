@@ -69,15 +69,36 @@ for language_code, display_name in language_display_names.items():
 # Read TSV cuisines and create an array of dictionaries
 with open(input_cuisines_file) as file:
     reader = csv.DictReader(file, delimiter="\t")
-    cuisines_data = [
-        row for row in reader if any(value.strip() for value in row.values() if value)
-    ]
+    cuisines_data = []
+    for row in reader:
+        # Skip rows with only whitespace
+        if not any(value.strip() for value in row.values()):
+            continue
 
-# Step 1: Create virtual column cuisine_id
-for row in cuisines_data:
-    row["cuisine_id"] = ".".join([row["category_id"], row["cuisine_short_id"]])
+        for value in row.values():
+            assert value.strip() == value, f'Whitespace found: "{value}"'
 
-# Step 2: Check for duplicate or empty cuisine_ids
+        cuisines_data.append(row)
+
+# # Step 1: Create virtual column cuisine_id
+# for row in cuisines_data:
+#     row["cuisine_id"] = ".".join([row["category_id"], row["cuisine_short_id"]])
+
+# # Step 2a: Check for duplicate or empty cuisine_short_ids
+# cuisine_short_ids = [row["cuisine_short_id"] for row in cuisines_data]
+# duplicates = [
+#     cuisine_short_id
+#     for cuisine_short_id in cuisine_short_ids
+#     if cuisine_short_ids.count(cuisine_short_id) > 1
+# ]
+# assert len(cuisine_short_ids) == len(
+#     set(cuisine_short_ids)
+# ), f"Duplicate cuisine_short_ids found: {', '.join(duplicates)}"
+# assert all(
+#     cuisine_id != "" for cuisine_id in cuisine_short_ids
+# ), "Empty cuisine_short_id found"
+
+# Step 2b: Check for duplicate or empty cuisine_ids
 cuisine_ids = [row["cuisine_id"] for row in cuisines_data]
 duplicates = [
     cuisine_id for cuisine_id in cuisine_ids if cuisine_ids.count(cuisine_id) > 1
@@ -103,14 +124,27 @@ for row in cuisines_data:
         cuisine_language_code_set.add(language_code)
 
 # Step 3: Sort by category_name_en and cuisine_name_en
-cuisines_data.sort(key=itemgetter("category_name_en", "cuisine_name_en"))
+cuisines_data.sort(
+    key=lambda item: (
+        item["category_name_en"].split(">")[0].strip(),
+        item["category_name_en"].split(">")[1].strip().endswith("Other")
+        if len(item["category_name_en"].split(">")) > 1
+        else "",
+        item["category_name_en"].split(">")[1].strip()
+        if len(item["category_name_en"].split(">")) > 1
+        else "",
+        item["cuisine_name_en"].startswith("Other"),
+        item["cuisine_name_en"].startswith("Pan-"),
+        item["cuisine_name_en"],
+    )
+)
 
-# Step 4: Group rows by category_id
+# Step 4: Group rows by category_name_en
 grouped_cuisines = []
-for key, group in groupby(cuisines_data, key=itemgetter("category_id")):
+for key, group in groupby(cuisines_data, key=itemgetter("category_name_en")):
     category_data = list(group)
     category = {
-        "category_id": key,
+        # "category_id": key,
         "category_name_en": category_data[0]["category_name_en"],
         "children": [],
     }
@@ -118,7 +152,7 @@ for key, group in groupby(cuisines_data, key=itemgetter("category_id")):
         cuisine = {
             "cuisine_name_en": row["cuisine_name_en"],
             "language_codes": row["language_codes"].split(", "),
-            "cuisine_id": row["cuisine_id"],
+            # "cuisine_id": row["cuisine_id"],
         }
         category["children"].append(cuisine)
     grouped_cuisines.append(category)

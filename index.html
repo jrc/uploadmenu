@@ -30,13 +30,13 @@
 
         <form id="upload-form" enctype="multipart/form-data" class="mt-4">
             <div class="mb-3">
-                <label for="name" class="form-label">1. Choose the restaurant.</label>
+                <label for="name" class="form-label">1. Choose the restaurant. *</label>
                 <input type="text" class="form-control form-control-lg" id="place-input"
                     placeholder="Enter a restaurant name" required>
             </div>
 
             <div class="mb-3">
-                <label for="photo" class="form-label">2. Take a photo of the menu (submit one page a time).</label>
+                <label for="photo" class="form-label">2. Take a photo of the menu (submit one page a time). *</label>
                 <input type="file" class="form-control form-control-lg" id="photo" name="photo" accept="image/*"
                     capture="environment" required>
                 <!-- https://web.dev/media-capturing-images/
@@ -50,20 +50,18 @@
 
             <div class="mb-3">
                 <label for="cuisine" class="form-label">3. Choose the restaurant’s cuisine.</label>
-                <select class="form-control" id="cuisine" name="cuisine" onchange="updateLanguageSelectElement()"
-                    required>
-                </select>
+                <select class="form-control" id="cuisine" name="cuisine" onchange="updateLanguageSelectElement()">
                 </select>
             </div>
 
             <div class="mb-3">
                 <label for="languages" class="form-label">4. Choose the language(s) that the restaurant menu appears
                     in.</label>
-                <select class="form-control" id="languages" name="languages" multiple required>
+                <select class="form-control" id="languages" name="languages" multiple>
                 </select>
             </div>
 
-            <p><small>* All fields are required.</small></p>
+            <p><small>* Required fields</small></p>
 
             <button type="submit" id="submit-button" class="btn btn-primary btn-lg">
                 <span id="button-spinner" class="spinner-border spinner-border-sm me-2 d-none" role="status"
@@ -73,7 +71,7 @@
 
             <div class="mt-2" id="success-alert-container" hidden>
                 <div class="alert alert-success" role="alert" id="success-alert">
-                    Submission successful. You’re the best! 🙏
+                    It worked. You’re the best! 🙏
                 </div>
             </div>
 
