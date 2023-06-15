@@ -1,1037 +1,1037 @@
-cuisine_id	category_name_en	cuisine_name_en	language_codes
-AFRI.EAST.OTHER	African (Sub-Saharan)	Other (East African)	sw, en, fr
-AFRI.PAN	African (Sub-Saharan)	Pan-African	en, fr, sw
-AFRI.SOUTH.OTHER	African (Sub-Saharan)	Other (Southern African)	en, af, zu, ss
-AFRI.WEST.OTHER	African (Sub-Saharan)	Other (West African)	en, fr, ha, yo, ig, ff, bm, kri
-ET	African (Sub-Saharan)	Ethiopian	am, en
-SN	African (Sub-Saharan)	Senegalese	wo, fr
-AMER.CARIBBEAN.OTHER	Americas > Caribbean	Other (Caribbean)	en, es, nl, fr
-CARIBBEAN.PAN	Americas > Caribbean	Pan-Caribbean	en, es, nl, fr
-CU	Americas > Caribbean	Cuban	es
-JM	Americas > Caribbean	Jamaican	en
-AMER.NORTH.DINER	Americas > North	Diner	en
-CA	Americas > North	Canadian	en, fr
-US.BARBECUE	Americas > North	USA > Southern > Barbecue	en
-US.BURGER	Americas > North	Burger	en
-US.CA	Americas > North	USA > Californian	en
-US.CAJUN	Americas > North	USA > Southern > Cajun	en
-US.NEWENGLAND	Americas > North	USA > New England	en
-US.OTHER	Americas > North	USA > Other (American)	en
-US.SOUL	Americas > North	USA > Southern > Soul Food	en
-US.SOUTHWEST	Americas > North	USA > Southwestern	en, es
-US.TEXMEX	Americas > North	USA > Southwestern > Tex-Mex	en, es
-AMER.CENTRAL.OTHER	Americas > South & Central	Other (Central American)	es, en
-AMER.LATIN.PAN	Americas > South & Central	Pan-Latin American	es, pt, en
-AMER.SOUTH.OTHER	Americas > South & Central	Other (South American)	es, pt
-AR	Americas > South & Central	Argentinian	es
-BR	Americas > South & Central	Brazilian	pt
-CO	Americas > South & Central	Colombian	es
-MX	Americas > South & Central	Mexican	es
-PE	Americas > South & Central	Peruvian	es
-SV	Americas > South & Central	Salvadoran	es
-VE	Americas > South & Central	Venezuelan	es
-ASIA.EAST.PAN	Asia > East	Pan-East Asian	zh, ja, ko
-CHINESE	Asia > East	Chinese	zh
-CHINESE.DIMSUM	Asia > East	Chinese > Dim Sum	zh-Hant, zh-Hans
-CHINESE.HOTPOT	Asia > East	Chinese > Hotpot	zh
-CN.GD	Asia > East	Chinese > China > Cantonese	zh-Hans
-CN.SC	Asia > East	Chinese > China > Sichuan	zh-Hans
-CN.SD	Asia > East	Chinese > China > Shandong	zh-Hans
-CN.SH	Asia > East	Chinese > China > Shanghai	zh-Hans
-JP	Asia > East	Japanese	ja
-JP.IZAKAYA	Asia > East	Japanese > Izakaya	ja
-JP.RAMEN	Asia > East	Japanese > Ramen	ja
-JP.SUSHI	Asia > East	Japanese > Sushi	ja
-JP.TEPPANYAKI	Asia > East	Japanese > Teppanyaki	ja
-KPKR	Asia > East	Korean	ko
-KPKR.BBQ	Asia > East	Korean > BBQ	ko
-TW	Asia > East	Chinese > Taiwanese	zh-Hant
-ASIA.PAN	Asia > Other	Pan-Asian	zh, ja, ko, th, vi
-ASIA.CENTRAL.OTHER	Asia > Other	Other (Central Asian)	kk, ky, tg, tk, uz
-MN	Asia > Other	Mongolian	mn
-AF	Asia > Other	Afghan	ps, fa-AF, en
-ASIA.SOUTHCENTRAL.OTHER	Asia > Other	Other (South-Central Asian & Himalayan)	ne, hi, bn, pa, ur, ta, si, bo, ps
-NP	Asia > Other	Nepalese	ne, en, hi
-BD	Asia > South	Bangladeshi	bn
-IN	Asia > South	Indian	hi, en
-IN.SOUTH	Asia > South	Indian > South	ta, te, kn, ml, en
-INDIAN.PAN	Asia > South	Pan-Indian	en
-LK	Asia > South	Sri Lankan	si, ta
-PK	Asia > South	Pakistani	ur
-ASIA.SOUTHEAST.OTHER	Asia > Southeast	Other (Southeast Asian)	ms, km, id, lo, ms, my, en, th, vi
-ASIA.SOUTHEAST.PAN	Asia > Southeast	Pan-Southeast Asian	ms, km, id, lo, ms, my, en, th, vi
-ID	Asia > Southeast	Indonesian	id
-KH	Asia > Southeast	Cambodian	km
-LA	Asia > Southeast	Lao	lo
-MM	Asia > Southeast	Burmese	my
-MY	Asia > Southeast	Malaysian	ms, zh
-PH	Asia > Southeast	Filipino	tl, en
-SG	Asia > Southeast	Singaporean	en, zh, ms, ta
-TH	Asia > Southeast	Thai	th
-VN	Asia > Southeast	Vietnamese	vi
-AT	Europe > Central & West	Austrian	de
-BE	Europe > Central & West	Belgian	nl, fr, de, en
-CH	Europe > Central & West	Swiss	gsw, fr, it
-CZ	Europe > Central & West	Czech	cs
-DE	Europe > Central & West	German	de
-FR	Europe > Central & West	French	fr
-HU	Europe > Central & West	Hungarian	hu
-NL	Europe > Central & West	Dutch	nl
-PL	Europe > Central & West	Polish	pl
-SK	Europe > Central & West	Slovak	sk
-GB	Europe > North & Northwest	British	en
-IE	Europe > North & Northwest	Irish	en
-DK	Europe > North & Northwest	Danish	da
-EURO.NORDIC.NEW	Europe > North & Northwest	New Nordic	da, fi, is, nb, sv
-EURO.NORDIC.OTHER	Europe > North & Northwest	Other (Nordic)	fi, is
-NO	Europe > North & Northwest	Norwegian	nb
-SCANDINAVIAN.PAN	Europe > North & Northwest	Pan-Scandinavian	da, nb, sv
-SE	Europe > North & Northwest	Swedish	sv
-EURO.EAST.CAUCASIAN.OTHER	Europe > Eastern & Caucasian	Other (Caucasian)	hy, az
-EURO.EAST.OTHER	Europe > Eastern & Caucasian	Other (Eastern European)	et, lv, lt, be, bg, ro, ru, uk
-GE	Europe > Eastern & Caucasian	Georgian	ka, ru
-RU	Europe > Eastern & Caucasian	Russian	ru
-UA	Europe > Eastern & Caucasian	Ukrainian	uk
-EURO.PAN	Europe > Other	Pan-European	en
-ES	Europe > Southern & Mediterranean	Spanish	es
-ES.TAPAS	Europe > Southern & Mediterranean	Tapas	es
-EURO.SOUTHMEDITERRANEAN.BALKAN.OTHER	Europe > Southern & Mediterranean	Other (Balkan)	sq, sr, hr, bs, bg, ro, el, tr, mk
-GR	Europe > Southern & Mediterranean	Greek	el
-IT	Europe > Southern & Mediterranean	Italian	it
-IT.PIZZA	Europe > Southern & Mediterranean	Pizza	it, en
-MEDITERRANEAN.PAN	Europe > Southern & Mediterranean	Pan-Mediterranean	ar, el, en, es, fr, he, hr, it, mk, pt, sl, tr
-PT	Europe > Southern & Mediterranean	Portuguese	pt
-IL	Middle Eastern & North African	Israeli	he, en, ar
-IR	Middle Eastern & North African	Persian	fa
-LB	Middle Eastern & North African	Lebanese	ar
-MA	Middle Eastern & North African	Moroccan	ar
-MENA.KEBAB	Middle Eastern & North African	Kebab	tr
-MENA.MIDDLEEAST.OTHER	Middle Eastern & North African	Other (Middle Eastern)	ar, fa, he
-MENA.MIDDLEEAST.PAN	Middle Eastern & North African	Pan-Middle Eastern	ar, fa, he
-MENA.NORTHAFRICA.OTHER	Middle Eastern & North African	Other (North African)	ar, fr
-TR	Middle Eastern & North African	Turkish	tr
-AUNZ	Oceanian	Australian & New Zealand	en
-OCEA.PACIFICISLAND.OTHER	Oceanian	Other (Pacific Island)	en
-US.HI.POKE	Oceanian	Hawaiian > Poke	en, haw
-OTHER	Other	Other	en
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
+cuisine_id	category_name_en	cuisine_name_en	language_codes	osm_cuisine	emoji	type
+AF	Asia > Other	Afghan	ps, fa-AF, en	afghan	🇦🇫	ethnic/national
+AFRI.EAST.OTHER	African (Sub-Saharan)	Other (East African)	sw, en, fr			catchall
+AFRI.PAN	African (Sub-Saharan)	Pan-African	en, fr, sw	african		panregional
+AFRI.SOUTH.OTHER	African (Sub-Saharan)	Other (Southern African)	en, af, zu, ss			catchall
+AFRI.WEST.OTHER	African (Sub-Saharan)	Other (West African)	en, fr, ha, yo, ig, ff, bm, kri			catchall
+AMER.CARIBBEAN.OTHER	Americas > Caribbean	Other (Caribbean)	en, es, nl, fr			catchall
+AMER.CARIBBEAN.PAN	Americas > Caribbean	Pan-Caribbean	en, es, nl, fr	caribbean		panregional
+AMER.CENTRAL.OTHER	Americas > South & Central	Other (Central American)	es, en			catchall
+AMER.LATIN.PAN	Americas > South & Central	Pan-Latin American	es, pt, en	latin_american		panregional
+AMER.SOUTH.OTHER	Americas > South & Central	Other (South American)	es, pt			catchall
+AR	Americas > South & Central	Argentinian	es	argentinian	🇦🇷	ethnic/national
+ASIA.CENTRAL.OTHER	Asia > Other	Other (Central Asian)	kk, ky, tg, tk, uz			catchall
+ASIA.EAST.PAN	Asia > East	Pan-East Asian	zh, ja, ko	oriental		panregional
+ASIA.PAN	Asia > Other	Other (Asian)	zh, ja, ko, th, vi	asian		panregional
+ASIA.SOUTH.INDIAN.PAN	Asia > South	Pan-Indian	en			panregional
+ASIA.SOUTHCENTRAL.OTHER	Asia > Other	Other (South-Central Asian & Himalayan)	ne, hi, bn, pa, ur, ta, si, bo, ps			catchall
+ASIA.SOUTHEAST.OTHER	Asia > Southeast	Other (Southeast Asian)	ms, km, id, lo, ms, my, en, th, vi			catchall
+ASIA.SOUTHEAST.PAN	Asia > Southeast	Pan-Southeast Asian	ms, km, id, lo, ms, my, en, th, vi			panregional
+AT	Europe > Central & West	Austrian	de	austrian	🇦🇹	ethnic/national
+AUNZ	Oceanian	Australian & New Zealand	en	australian	🇦🇺🇳🇿	ethnic/national
+BD	Asia > South	Bangladeshi	bn	bangladeshi	🇧🇩	ethnic/national
+BE	Europe > Central & West	Belgian	nl, fr, de, en	belgian	🇧🇪	ethnic/national
+BR	Americas > South & Central	Brazilian	pt	brazilian	🇧🇷	ethnic/national
+CA	Americas > North	Canadian	en, fr		🇨🇦	ethnic/national
+CH	Europe > Central & West	Swiss	gsw, fr, it	swiss	🇨🇭	ethnic/national
+CN	Asia > East	Chinese	zh	chinese	🇨🇳	ethnic/national
+CN.DIMSUM	Asia > East	Chinese > Dim Sum	zh-Hant, zh-Hans			style
+CN.GD	Asia > East	Chinese > China > Cantonese	zh-Hans	cantonese	粤	subregional
+CN.HOTPOT	Asia > East	Chinese > Hotpot	zh	hotpot		food
+CN.SC	Asia > East	Chinese > China > Sichuan	zh-Hans		川	subregional
+CN.SD	Asia > East	Chinese > China > Shandong	zh-Hans		鲁	subregional
+CN.SH	Asia > East	Chinese > China > Shanghai	zh-Hans		沪	subregional
+CO	Americas > South & Central	Colombian	es	colombian	🇨🇴	ethnic/national
+CU	Americas > Caribbean	Cuban	es	cuban	🇨🇺	ethnic/national
+CZ	Europe > Central & West	Czech	cs	czech	🇨🇿	ethnic/national
+DE	Europe > Central & West	German	de	german	🇩🇪	ethnic/national
+DK	Europe > Nordic & North Atlantic	Danish	da	danish	🇩🇰	ethnic/national
+ES	Europe > Southern & Mediterranean	Spanish	es	spanish	🇪🇸	ethnic/national
+ES.TAPAS	Europe > Southern & Mediterranean	Spanish > Tapas	es	tapas		style
+ET	African (Sub-Saharan)	Ethiopian	am, en	ethiopian	🇪🇹	ethnic/national
+EURO.EAST.CAUCASIAN.OTHER	Europe > Eastern & Caucasian	Other (Caucasian)	hy, az			catchall
+EURO.EAST.OTHER	Europe > Eastern & Caucasian	Other (Eastern European)	et, lv, lt, be, bg, ro, ru, uk			catchall
+EURO.NORDIC.NEW	Europe > Nordic & North Atlantic	New Nordic	da, fi, is, nb, sv			style
+EURO.NORDIC.OTHER	Europe > Nordic & North Atlantic	Other (Nordic)	fi, is			catchall
+EURO.NORDIC.SCANDINAVIAN.PAN	Europe > Nordic & North Atlantic	Pan-Scandinavian	da, nb, sv			panregional
+EURO.PAN	Europe > Other	Pan-European	en	european		panregional
+EURO.SOUTH.BALKAN.OTHER	Europe > Southern & Mediterranean	Other (Balkan)	sq, sr, hr, bs, bg, ro, el, tr, mk	balkan		catchall
+EURO.SOUTH.PAN	Europe > Southern & Mediterranean	Pan-Mediterranean	ar, el, en, es, fr, he, hr, it, mk, pt, sl, tr	mediterranean		panregional
+FR	Europe > Central & West	French	fr	french	🇫🇷	ethnic/national
+GB	Europe > Nordic & North Atlantic	British	en	british	🇬🇧	ethnic/national
+GE	Europe > Eastern & Caucasian	Georgian	ka, ru	georgian	🇬🇪	ethnic/national
+GR	Europe > Southern & Mediterranean	Greek	el	greek	🇬🇷	ethnic/national
+HU	Europe > Central & West	Hungarian	hu	hungarian	🇭🇺	ethnic/national
+ID	Asia > Southeast	Indonesian	id	indonesian	🇮🇩	ethnic/national
+IE	Europe > Nordic & North Atlantic	Irish	en	irish	🇮🇪	ethnic/national
+IL	Middle Eastern & North African	Israeli	he, en, ar		🇮🇱	ethnic/national
+IN	Asia > South	Indian	hi, en	indian	🇮🇳	ethnic/national
+IN.SOUTH	Asia > South	Indian > South	ta, te, kn, ml, en	south_indian		subregional
+IR	Middle Eastern & North African	Persian	fa	persian	🇮🇷	ethnic/national
+IT	Europe > Southern & Mediterranean	Italian	it	italian	🇮🇹	ethnic/national
+JM	Americas > Caribbean	Jamaican	en	jamaican	🇯🇲	ethnic/national
+JP	Asia > East	Japanese	ja	japanese	🇯🇵	ethnic/national
+JP.IZAKAYA	Asia > East	Japanese > Izakaya	ja			style
+JP.RAMEN	Asia > East	Japanese > Ramen	ja	ramen	🍜	food
+JP.SUSHI	Asia > East	Japanese > Sushi	ja	sushi	🍣	food
+JP.TEPPANYAKI	Asia > East	Japanese > Teppanyaki	ja			style
+KH	Asia > Southeast	Cambodian	km	cambodian	🇰🇭	ethnic/national
+KRKP	Asia > East	Korean	ko	korean	🇰🇷🇰🇵	ethnic/national
+KRKP.BBQ	Asia > East	Korean > BBQ	ko			food
+LA	Asia > Southeast	Lao	lo	lao	🇱🇦	ethnic/national
+LB	Middle Eastern & North African	Lebanese	ar	lebanese	🇱🇧	ethnic/national
+LK	Asia > South	Sri Lankan	si, ta	sri_lankan	🇱🇰	ethnic/national
+MA	Middle Eastern & North African	Moroccan	ar	moroccan	🇲🇦	ethnic/national
+MENA.KEBAB	Middle Eastern & North African	Middle Eastern > Kebab	tr	kebab	🥙	food
+MENA.MIDDLEEAST.OTHER	Middle Eastern & North African	Other (Middle Eastern)	ar, fa, he	middle_eastern		catchall
+MENA.MIDDLEEAST.PAN	Middle Eastern & North African	Pan-Middle Eastern	ar, fa, he			panregional
+MENA.NORTHAFRICA.OTHER	Middle Eastern & North African	Other (North African)	ar, fr			catchall
+MM	Asia > Southeast	Burmese	my		🇲🇲	ethnic/national
+MN	Asia > Other	Mongolian	mn	mongolian	🇲🇳	ethnic/national
+MX	Americas > South & Central	Mexican	es	mexican	🇲🇽	ethnic/national
+MY	Asia > Southeast	Malaysian	ms, zh	malaysian	🇲🇾	ethnic/national
+NL	Europe > Central & West	Dutch	nl	dutch	🇳🇱	ethnic/national
+NO	Europe > Nordic & North Atlantic	Norwegian	nb		🇳🇴	ethnic/national
+NP	Asia > Other	Nepalese	ne, en, hi	nepalese	🇳🇵	ethnic/national
+OCEA.PACIFICISLAND.OTHER	Oceanian	Other (Pacific Island)	en			catchall
+OTHER	Other	Other	en			catchall
+PE	Americas > South & Central	Peruvian	es	peruvian	🇵🇪	ethnic/national
+PH	Asia > Southeast	Filipino	tl, en	filipino	🇵🇭	ethnic/national
+PK	Asia > South	Pakistani	ur	pakistani	🇵🇰	ethnic/national
+PL	Europe > Central & West	Polish	pl	polish	🇵🇱	ethnic/national
+PT	Europe > Southern & Mediterranean	Portuguese	pt	portuguese	🇵🇹	ethnic/national
+RU	Europe > Eastern & Caucasian	Russian	ru	russian	🇷🇺	ethnic/national
+SE	Europe > Nordic & North Atlantic	Swedish	sv	swedish	🇸🇪	ethnic/national
+SG	Asia > Southeast	Singaporean	en, zh, ms, ta	singaporean	🇸🇬	ethnic/national
+SK	Europe > Central & West	Slovak	sk		🇸🇰	ethnic/national
+SN	African (Sub-Saharan)	Senegalese	wo, fr	senegalese	🇸🇳	ethnic/national
+SV	Americas > South & Central	Salvadoran	es		🇸🇻	ethnic/national
+TH	Asia > Southeast	Thai	th	thai	🇹🇭	ethnic/national
+TR	Middle Eastern & North African	Turkish	tr	turkish	🇹🇷	ethnic/national
+TW	Asia > East	Chinese > Taiwanese	zh-Hant	taiwanese	🇹🇼	ethnic/national
+UA	Europe > Eastern & Caucasian	Ukrainian	uk	ukrainian	🇺🇦	ethnic/national
+US	Americas > North	American	en	american	🇺🇸	ethnic/national
+US.BARBECUE	Americas > North	American > Barbecue	en	barbecue		style
+US.BURGER	Americas > North	American > Burger	en	burger	🍔	food
+US.CA	Americas > North	American > Californian	en			subregional
+US.CAJUN	Americas > North	American > Southern > Cajun	en	cajun		subregional
+US.DINER	Americas > North	American > Diner	en	diner		style
+US.HI.POKE	Oceanian	Hawaiian > Poke	en, haw	poke		food
+US.NEWENGLAND	Americas > North	American > New England	en			subregional
+US.PIZZA	Americas > North	American > Pizza	en, it	pizza	🍕	food
+US.SOUL	Americas > North	American > Southern > Soul Food	en	southern		subregional
+US.SOUTHWEST	Americas > North	American > Southwestern	en, es			subregional
+US.TEXMEX	Americas > North	American > Southwestern > Tex-Mex	en, es	tex-mex		subregional
+VE	Americas > South & Central	Venezuelan	es	venezuelan	🇻🇪	ethnic/national
+VN	Asia > Southeast	Vietnamese	vi	vietnamese	🇻🇳	ethnic/national
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						

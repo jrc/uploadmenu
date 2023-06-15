@@ -80,25 +80,7 @@ with open(input_cuisines_file) as file:
 
         cuisines_data.append(row)
 
-# # Step 1: Create virtual column cuisine_id
-# for row in cuisines_data:
-#     row["cuisine_id"] = ".".join([row["category_id"], row["cuisine_short_id"]])
-
-# # Step 2a: Check for duplicate or empty cuisine_short_ids
-# cuisine_short_ids = [row["cuisine_short_id"] for row in cuisines_data]
-# duplicates = [
-#     cuisine_short_id
-#     for cuisine_short_id in cuisine_short_ids
-#     if cuisine_short_ids.count(cuisine_short_id) > 1
-# ]
-# assert len(cuisine_short_ids) == len(
-#     set(cuisine_short_ids)
-# ), f"Duplicate cuisine_short_ids found: {', '.join(duplicates)}"
-# assert all(
-#     cuisine_id != "" for cuisine_id in cuisine_short_ids
-# ), "Empty cuisine_short_id found"
-
-# Step 2b: Check for duplicate or empty cuisine_ids
+# Step 1: Check for duplicate or empty cuisine_ids
 cuisine_ids = [row["cuisine_id"] for row in cuisines_data]
 duplicates = [
     cuisine_id for cuisine_id in cuisine_ids if cuisine_ids.count(cuisine_id) > 1
@@ -108,7 +90,7 @@ assert len(cuisine_ids) == len(
 ), f"Duplicate cuisine_ids found: {', '.join(duplicates)}"
 assert all(cuisine_id != "" for cuisine_id in cuisine_ids), "Empty cuisine_id found"
 
-# Step 2.5: Check for unsupported or empty language codes
+# Step 2: Check for unsupported or empty language codes
 cuisine_language_code_set = set()
 
 for row in cuisines_data:
@@ -123,7 +105,27 @@ for row in cuisines_data:
 
         cuisine_language_code_set.add(language_code)
 
-# Step 3: Sort by category_name_en and cuisine_name_en
+# Step 3: Add virtual display_name column, injecting emoji
+for row in cuisines_data:
+    display_name = row["cuisine_name_en"]
+
+    # if not row["type"] == "food":
+    if row["emoji"]:
+        if row["type"] in ["ethnic/national", "panregional"]:
+            display_name = f'{row["emoji"]} {display_name}'
+        else:
+            display_name = f'{display_name} ({row["emoji"]})'
+
+    parent_cuisine_id = ".".join(row["cuisine_id"].split(".")[:-1])
+    parent_row = next(
+        (x for x in cuisines_data if x["cuisine_id"] == parent_cuisine_id), None
+    )
+    if parent_row:
+        display_name = f'{parent_row["emoji"]} {display_name}'
+
+    row["display_name"] = display_name
+
+# Step 4: Sort by category_name_en and cuisine_name_en
 cuisines_data.sort(
     key=lambda item: (
         item["category_name_en"].split(">")[0].strip(),
@@ -139,7 +141,7 @@ cuisines_data.sort(
     )
 )
 
-# Step 4: Group rows by category_name_en
+# Step 5: Group rows by category_name_en
 grouped_cuisines = []
 for key, group in groupby(cuisines_data, key=itemgetter("category_name_en")):
     category_data = list(group)
@@ -150,7 +152,7 @@ for key, group in groupby(cuisines_data, key=itemgetter("category_name_en")):
     }
     for row in category_data:
         cuisine = {
-            "cuisine_name_en": row["cuisine_name_en"],
+            "display_name": row["display_name"],
             "language_codes": row["language_codes"].split(", "),
             # "cuisine_id": row["cuisine_id"],
         }

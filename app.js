@@ -111,7 +111,7 @@ function initializeCuisineSelectOptions() {
         optgroup.label = category.category_name_en;
 
         for (const cuisine of category.children) {
-            const option = new Option(cuisine.cuisine_name_en, cuisine.cuisine_id);
+            const option = new Option(cuisine.display_name, cuisine.cuisine_id);
             optgroup.appendChild(option);
         }
 
